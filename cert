@@ -64,3 +64,10 @@ IMPORTANT NOTES:
 
    Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
    Donating to EFF:                    https://eff.org/donate-le
+
+
+
+# prüfung ....
+tv@notebook:~$ dig -t txt _acme-challenge.augustusburg.org.| grep TXT
+;_acme-challenge.augustusburg.org. IN   TXT
+_acme-challenge.augustusburg.org. 300 IN TXT    "Cw_4l2lWRil4wbEAiHZvJQ6mLJdBhwDwbbA2bwcdYzg"
