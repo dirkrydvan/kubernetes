@@ -1,276 +1,165 @@
 [root@portal ~]# history 
-    1  yum -y upgrade
-    2  netstat
-    3  netstat /n
-    4  netstat -n
-    5  netstat -t
-    6  netstat -u
-    7  netstat -p tcp
-    8  netstat | grep tcp
-    9  netstat -a| grep tcp
-   10  df -h
-   11  reboot
-   12  ps -ef
-   13  yum -y upgrade
-   14  reboot
-   15  ps -ef
-   16  uname -a
-   17  uptime 
-   18  ps -ef
-   19  cat /var/log/messages
-   20  ps -ef
-   21  last
-   22  top
-   23  ps -ef
-   24  init 5
-   25  ps -ef
-   26  yum install xfce
-   27  yum install x2go
-   28  xum list
-   29  yum list
-   30  yum list< grep -i x3go
-   31  yum list| grep -i x3go
-   32  yum -y upgrade
-   33  ps -ef
-   34  yum -y upgrade
-   35  id
-   36  ps -ef
-   37  top
-   38  cat /etc/redhat-release 
-   39  sync
-   40  top
-   41  cat /var/log/messages
-   42  ps -ef
-   43  top
-   44  ifconfig 
-   45  nmcli device status
-   46  vi  /etc/sysconfig/network-scripts/ifcfg-eth0
-   47  vi  /etc/sysconfig/network-scripts/ifcfg-lo 
-   48  vi  /etc/sysconfig/network-scripts/ifcfg-eth0
-   49  vi  /etc/sysconfig/network-scripts/ifcfg-lo 
-   50  ps -ef
-   51  uanme -a
-   52  uname -a
-   53  reboot
-   54  vi /etc/hostname 
-   55  reboot
-   56  vi /etc/hostname 
-   57  cat /etc/hosts
-   58  ntpq -p
-   59  ps -ef
-   60  ls
-   61  top
-   62  ls
-   63  history -a
-   64  ### instalklation docker als vorraussetzung für kubeadm
-   65  yum install -y docker
-   66  systemctl enable docker && systemctl start docker
-   67  systemctl start docker
-   68  systemctl status docker.service
-   69  vi /etc/sestatus.conf 
-   70  vi /etc/selinux/semanage.conf 
-   71  vi /etc/sysconfig/selinux
-   72  systemctl status docker.service
-   73  systemctl strat docker.service
-   74  systemctl start docker.service
-   75  journalctl -xe
-   76  yum -y upgrade
-   77  systemctl start docker.service
-   78  reboot
-   79  systemctl start docker.service
-   80  journalctl -xe
-   81  date
-   82  history 
-   83  ### docker start??
-   84  vi /etc/sysconfig/docker
-   85  ls
-   86  cp /etc/sysconfig/docker /etc/sysconfig/docker.20180420
-   87  vi /etc/sysconfig/docker
-   88  systemctl start docker.service
-   89  journalctl -xe
-   90  vi /etc/sysconfig/docker
-   91  systemctl start docker.service
-   92  diff /etc/sysconfig/docker /etc/sysconfig/docker.20180420 
-   93  ##OPTIONS='--selinux-enabled --log-driver=journald --signature-verification=false --storage-driver=devicemapper'
-   94  #OPTIONS='--log-driver=journald --signature-verification=false --storage-driver=devicemapper'
-   95  # selinux funktionietr nicht mit der docker version und oberleay treiber
-   96  cat <<EOF > /etc/yum.repos.d/kubernetes.repo
-[kubernetes]
-name=Kubernetes
-baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
-enabled=1
-gpgcheck=1
-repo_gpgcheck=1
-gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-EOF
-
-   97  cat /etc/yum.repos.d/kubernetes.repo
-   98  setenforce 0
-   99  yum install -y kubelet kubeadm kubectl
-  100  systemctl enable kubelet && systemctl start kubelet
-  101  docker info | grep -i cgroup
-  102  cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
-  103  # Cgroup Driver: systemd
-  104  # prüfen ob docker und k8s die gleiche einstellung
-  105  # netzwerk iptabels vorbeugung centos
-  106  cat <<EOF >  /etc/sysctl.d/k8s.conf
-net.bridge.bridge-nf-call-ip6tables = 1
-net.bridge.bridge-nf-call-iptables = 1
-EOF
-
-  107  sysctl --system
-  108  yum -y upgrade
-  109  cat /etc/yum.repos.d/kubernetes.repo
-  110  yum -y upgrade
-  111  kubeadm init
-  112  mkdir -p $HOME/.kube
-  113    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-  114    sudo chown $(id -u):$(id -g) $HOME/.kube/config
-  115  export KUBECONFIG=/etc/kubernetes/admin.conf
-  116  # nur merken für zusätzlcihe nodes: kubeadm join 10.0.0.169:6443 --token qistdm.upxqjbcbgbjjv8xh --discovery-token-ca-cert-hash sha256:75dcbcd5fd02e5251b1ee80e352588d7b2bf289945c6efffec24594b898ac5a2
-  117  export kubever=$(kubectl version | base64 | tr -d '\n')
-  118  echo $kubever
-  119  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
-  120  kubectl get nodes
-  121  top
-  122  kubectl get nodes
-  123  history .
-  124  history 
-[root@portal ~]# history 
-    1  yum -y upgrade
-    2  netstat
-    3  netstat /n
-    4  netstat -n
-    5  netstat -t
-    6  netstat -u
-    7  netstat -p tcp
-    8  netstat | grep tcp
-    9  netstat -a| grep tcp
-   10  df -h
-   11  reboot
-   12  ps -ef
-   13  yum -y upgrade
-   14  reboot
-   15  ps -ef
-   16  uname -a
-   17  uptime 
-   18  ps -ef
-   19  cat /var/log/messages
-   20  ps -ef
-   21  last
-   22  top
-   23  ps -ef
-   24  init 5
-   25  ps -ef
-   26  yum install xfce
-   27  yum install x2go
-   28  xum list
-   29  yum list
-   30  yum list< grep -i x3go
-   31  yum list| grep -i x3go
-   32  yum -y upgrade
-   33  ps -ef
-   34  yum -y upgrade
-   35  id
-   36  ps -ef
-   37  top
-   38  cat /etc/redhat-release 
-   39  sync
-   40  top
-   41  cat /var/log/messages
-   42  ps -ef
-   43  top
-   44  ifconfig 
-   45  nmcli device status
-   46  vi  /etc/sysconfig/network-scripts/ifcfg-eth0
-   47  vi  /etc/sysconfig/network-scripts/ifcfg-lo 
-   48  vi  /etc/sysconfig/network-scripts/ifcfg-eth0
-   49  vi  /etc/sysconfig/network-scripts/ifcfg-lo 
-   50  ps -ef
-   51  uanme -a
-   52  uname -a
-   53  reboot
-   54  vi /etc/hostname 
-   55  reboot
-   56  vi /etc/hostname 
-   57  cat /etc/hosts
-   58  ntpq -p
-   59  ps -ef
-   60  ls
-   61  top
-   62  ls
-   63  history -a
-   64  ### instalklation docker als vorraussetzung für kubeadm
-   65  yum install -y docker
-   66  systemctl enable docker && systemctl start docker
-   67  systemctl start docker
-   68  systemctl status docker.service
-   69  vi /etc/sestatus.conf 
-   70  vi /etc/selinux/semanage.conf 
-   71  vi /etc/sysconfig/selinux
-   72  systemctl status docker.service
-   73  systemctl strat docker.service
-   74  systemctl start docker.service
-   75  journalctl -xe
-   76  yum -y upgrade
-   77  systemctl start docker.service
-   78  reboot
-   79  systemctl start docker.service
-   80  journalctl -xe
-   81  date
-   82  history 
-   83  ### docker start??
-   84  vi /etc/sysconfig/docker
-   85  ls
-   86  cp /etc/sysconfig/docker /etc/sysconfig/docker.20180420
-   87  vi /etc/sysconfig/docker
-   88  systemctl start docker.service
-   89  journalctl -xe
-   90  vi /etc/sysconfig/docker
-   91  systemctl start docker.service
-   92  diff /etc/sysconfig/docker /etc/sysconfig/docker.20180420 
-   93  ##OPTIONS='--selinux-enabled --log-driver=journald --signature-verification=false --storage-driver=devicemapper'
-   94  #OPTIONS='--log-driver=journald --signature-verification=false --storage-driver=devicemapper'
-   95  # selinux funktionietr nicht mit der docker version und oberleay treiber
-   96  cat <<EOF > /etc/yum.repos.d/kubernetes.repo
-[kubernetes]
-name=Kubernetes
-baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
-enabled=1
-gpgcheck=1
-repo_gpgcheck=1
-gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-EOF
-
-   97  cat /etc/yum.repos.d/kubernetes.repo
-   98  setenforce 0
-   99  yum install -y kubelet kubeadm kubectl
-  100  systemctl enable kubelet && systemctl start kubelet
-  101  docker info | grep -i cgroup
-  102  cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
-  103  # Cgroup Driver: systemd
-  104  # prüfen ob docker und k8s die gleiche einstellung
-  105  # netzwerk iptabels vorbeugung centos
-  106  cat <<EOF >  /etc/sysctl.d/k8s.conf
-net.bridge.bridge-nf-call-ip6tables = 1
-net.bridge.bridge-nf-call-iptables = 1
-EOF
-
-  107  sysctl --system
-  108  yum -y upgrade
-  109  cat /etc/yum.repos.d/kubernetes.repo
-  110  yum -y upgrade
-  111  kubeadm init
-  112  mkdir -p $HOME/.kube
-  113    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-  114    sudo chown $(id -u):$(id -g) $HOME/.kube/config
-  115  export KUBECONFIG=/etc/kubernetes/admin.conf
-  116  # nur merken für zusätzlcihe nodes: kubeadm join 10.0.0.169:6443 --token qistdm.upxqjbcbgbjjv8xh --discovery-token-ca-cert-hash sha256:75dcbcd5fd02e5251b1ee80e352588d7b2bf289945c6efffec24594b898ac5a2
-  117  export kubever=$(kubectl version | base64 | tr -d '\n')
-  118  echo $kubever
-  119  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
-  120  kubectl get nodes
-  121  top
-  122  kubectl get nodes
-  123  history .
-  124  history 
+    1  ## selinux
+    2  vi /etc/sysconfig/selinux 
+    3  ## reboot wegens selinux
+    4  reboot
+    5  getenforce 
+    6  yum install -y docker
+    7  systemctl enable docker
+    8  systemctl start docker
+    9  systemctl status docker
+   10  # repository für kubelet machine, adm udn client
+   11  cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+   12  [kubernetes]
+   13  name=Kubernetes
+   14  baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+   15  enabled=1
+   16  gpgcheck=1
+   17  repo_gpgcheck=1
+   18  gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+   19  EOF
+   20  yum install -y kubelet kubeadm kubectl
+   21  yum -y upgrade
+   22  #netzwerk anpasen centos
+   23  cat <<EOF >  /etc/sysctl.d/k8s.conf
+   24  net.bridge.bridge-nf-call-ip6tables = 1
+   25  net.bridge.bridge-nf-call-iptables = 1
+   26  EOF
+   27  sysctl --system
+   28  sysctl --system < grep bridges
+   29  sysctl --system | grep bridges
+   30  sysctl --system | grep brid
+   31  vi /etc/sysctl.conf 
+   32  sysctl --system 
+   33  sysctl --system | more
+   34  #prüfen cgroup dockler und k8s
+   35  docker info | grep -i cgroup
+   36  systemctl status docker
+   37  docker info | grep -i cgroup
+   38  docker info
+   39  docker info| grep cgroup
+   40  cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf| grep cgroup
+   41  systemctl daemon-reload
+   42  systemctl restart kubelet
+   43  yum install -y kubelet kubeadm kubectl
+   44  systemctl enable kubelet
+   45  systemctl start kubelet
+   46  systemctl status kubelet
+   47  # scheint normal:Unit kubelet.service entered failed state.
+   48  # weil zertifikat später mit kubeadm generiert wird
+   49  systemctl daemon-reload
+   50  systemctl restart kubelet
+   51  kubeadm init
+   52  # das clusternode hinzufügekommando merken: kubeadm join 10.0.0.231:6443 --token nfyili.9gy4u27jr5zbe4xy --discovery-token-ca-cert-hash sha256:d33152bb1c24804775e34a263f3af87326c1aae562836b8a9ed3520d655bdb1f
+   53  #kubectl confiog übertragen
+   54  mkdir -p $HOME/.kube
+   55    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   56    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   57  #prüfung netzwerk /proc/sys/net/bridge/bridge-nf-call-iptables
+   58  cat /proc/sys/net/bridge/bridge-nf-call-iptables
+   59  export kubever=$(kubectl version | base64 | tr -d '\n')
+   60  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+   61  # netzwek erweiterung weave installiert und nun schauen
+   62  kubectl get pods --all-namespaces
+   63  # bei singel node muss der master auch normale pods aufgnehmen kömnnen statt nur systempods
+   64  kubectl taint nodes --all node-role.kubernetes.io/master-
+   65  # wenn kubectl nicht local genutzt wird dan brauch man die konfig
+   66  /etc/kubernetes/admin.conf 
+   67  cat /etc/kubernetes/admin.conf 
+   68  # mit scp auf client holen
+   69  cp /etc/kubernetes/admin.conf /home/linux/.
+   70  chmod 755 /home/linux/admin.conf 
+   71  chmod 644 /home/linux/admin.conf 
+   72  iptables -l
+   73  iptables -L
+   74  iptables -L| grep 8443
+   75  iptables -L|more
+   76  ifconfig
+   77  telnet 10.0.0.231 8443
+   78  telnet localhost 8443
+   79  kubectl get pods --all-namespaces
+   80  kubectl --kubeconfig /etc/kubernetes/admin.conf get nodes
+   81  curl https://10.0.0.231:8443
+   82  curl https://10.0.0.231:6443
+   83  telnet 10.0.0.231 6443
+   84  iptables -L | grep 443
+   85  iptables -L |more
+   86  systemctl status iptaples
+   87  systemctl status iptables
+   88  systemctl status firewall
+   89  iptables -F
+   90  ls /etc/systemd/system/default.target/
+   91  ls /etc/systemd/system/default.target.wants/
+   92  uname .a
+   93  uname -aa
+   94  # achtung bei kubectl von extern -> ip ggf. von 10.xxx auf internet ip in admin.conf ändern
+   95  # ggf. auf client die internetip auf den lokalen namen legen, da die zertiufikate für die lokalen namen gemacht wurden
+   96  history -a
+   97  systemctl status firewalld
+   98  systemctl restart firewalld
+   99  firewall-cmd --zone=public --list-all
+  100  firewall-cmd --zone=public --add-port=6443/tcp --permanent
+  101  # firewall / iptable smuss auf port 6883 erweitetr werden
+  102  firewall-cmd --reload
+  103  # jetzt gehts mit firewall und kubecetlk clientr
+  104  # kube dashboard...
+  105  kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+  106  # firewall / iptable smuss auf port 443 erweitetr werden
+  107  firewall-cmd --zone=public --add-port=443/tcp --permanent
+  108  firewall-cmd --reload
+  109  telnet localhost:443
+  110  telnet localhost 443
+  111  curl https://10.0.0.231:443
+  112  kubectl get pods
+  113  kubectl get pod
+  114  kubectl get pods --all-namespaces
+  115  iptables -F
+  116  curl https://10.0.0.231:443
+  117  firewall-cmd --reload
+  118  curl https://10.0.0.231:443
+  119  kubectl -n kube-system get service kubernetes-dashboard
+  120  curl https://10.0.0.231:443
+  121  iptables -F
+  122  curl https://10.0.0.231:443
+  123  firewall-cmd --reload
+  124  kubectl -n kube-system get secret
+  125  kubectl -n kube-system describe secret replicaset-controller-token-cct72
+  126  # token herausbekomen für dashboad
+  127  kubectl -n kube-system get secret
+  128  kubectl -n kube-system describe secret default-token-q4zcd 
+  129  kubectl -n kube-system get secret
+  130  kubectl -n kube-system describe secret kubernetes-dashboard-token-jpkhs
+  131  kubectl -n defaukt get secret
+  132  kubectl -n default get secret
+  133  kubectl -n kube-system describe secret 
+  134  kubectl -n default describe secret default-token-cdz4n
+  135  kubectl discribe secret kubernetes-admin
+  136  kubectl describe secret kubernetes-admin
+  137  kubectl cluster-info
+  138  cat <<EOF > dashboard-admin.yaml
+  139  apiVersion: rbac.authorization.k8s.io/v1beta1
+  140  kind: ClusterRoleBinding
+  141  metadata:
+  142    name: kubernetes-dashboard
+  143    labels:
+  144      k8s-app: kubernetes-dashboard
+  145  roleRef:
+  146    apiGroup: rbac.authorization.k8s.io
+  147    kind: ClusterRole
+  148    name: cluster-admin
+  149  subjects:
+  150  - kind: ServiceAccount
+  151    name: kubernetes-dashboard
+  152    namespace: kube-system
+  153  EOF
+  154  kubectl create -f dashboard-admin.yaml
+  155  kubectl -n default get secret
+  156  kubectl -n kube-system get secret
+  157  kubectl -n kube-system get secret| grep kubernetes-dashboard
+  158  kubectl describe secret kubernetes-dashboard-token-jpkhs
+  159  kubectl -n kube-system describe secret kubernetes-dashboard-token-jpkhs
+  160  history -a
+  161  top
+  162  df -h
+  163  top
+  164  history
