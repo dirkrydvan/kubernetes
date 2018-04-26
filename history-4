@@ -1,0 +1,149 @@
+[root@localhost ~]# history 
+    1  ###kubernetes
+    2  #### selinux prüfen und auf disabled stellen
+    3  getenforce 
+    4  vi vi /etc/sysconfig/selinux 
+    5  vi /etc/sysconfig/selinux 
+    6  ls
+    7  history -a
+    8  ### reboot aktivierung deaktivierung selinux
+    9  reboot
+   10  history 
+   11  cat /var/log/messages 
+   12  cat /var/log/secure 
+   13  history 
+   14  ### kubernetes
+   15  ## beginnen mit docker
+   16  getenforce 
+   17  yum install -y docker
+   18  systemctl enable docker
+   19  systemctl start docker
+   20  systemctl status docker
+   21  # repository für kubelet machine, adm udn client
+   22  history -a
+   23  cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+   24  [kubernetes]
+   25  name=Kubernetes
+   26  baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
+   27  enabled=1
+   28  gpgcheck=1
+   29  repo_gpgcheck=1
+   30  gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+   31  EOF
+   32  yum install -y kubelet kubeadm kubectl
+   33  ### jetzt noch update auf alles
+   34  yum -y upgrade
+   35  history -a
+   36  ## neustart nach update
+   37  reboot
+   38  ps -ef
+   39  history 
+   40  #netzwerk anpasen centos
+   41  cat <<EOF > /etc/sysctl.d/k8s.conf
+   42  net.bridge.bridge-nf-call-ip6tables = 1
+   43  net.bridge.bridge-nf-call-iptables = 1
+   44  EOF
+   45  sysctl --system
+   46  sysctl --system | grep bridges
+   47  sysctl --system 
+   48  sysctl --system | grep bridge
+   49  #prüfen cgroup dockler und k8s
+   50  docker info | grep -i cgroup
+   51  cat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf| grep cgroup
+   52  yum install -y kubelet kubeadm kubectl
+   53  systemctl enable kubel
+   54  systemctl enable kubelet
+   55  systemctl start kubelet
+   56  systemctl status kubelet
+   57  # scheint normal:Unit kubelet.service entered failed state.
+   58  # weil zertifikat später mit kubeadm generiert wird
+   59  systemctl daemon-reload
+   60  sysctl --system | grep bridge
+   61  systemctl restart kubelet
+   62  systemctl status kubelet
+   63  ## ok - also nun init
+   64  kubeadm init
+   65  ps -ef
+   66  # swap geht nicht
+   67  vi /etc/fstab 
+   68  history -a
+   69  # swap geht nicht - muss abgeschaltetw erden
+   70  history -a
+   71  reboot
+   72  ps -ef
+   73  history 
+   74  ps -ef| grep bash
+   75  exit
+   76  history -a
+   77  # sshh config
+   78  vi /etc/ssh/sshd_config
+   79  # ClientAliveInterval 300
+   80  # ClientAliveCountMax 2
+   81  service sshd restart
+   82  service sshd status
+   83  exit
+   84  ps -ef
+   85  ## ok - also nun init - nochmal ohen sawap
+   86  kubeadm init
+   87  # das clusternode hinzufügekommando merken: kubeadm join 192.168.2.20:6443 --token ivz75z.j9436jn0bebjrzrq --discovery-token-ca-cert-hash sha256:42907f218773b206b1f3bcc07bb32ca0a1890f24a60f46fdea466f7fed24f744
+   88  #kubectl confiog übertragen
+   89  mkdir -p $HOME/.kube
+   90  cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   91  chown $(id -u):$(id -g) $HOME/.kube/config
+   92  #prüfung netzwerk /proc/sys/net/bridge/bridge-nf-call-iptables
+   93  cat /proc/sys/net/bridge/bridge-nf-call-iptables
+   94  export kubever=$(kubectl version | base64 | tr -d '\n')
+   95  kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$kubever"
+   96  # netzwek erweiterung weave installiert und nun schauen
+   97  kubectl get pods --all-namespaces
+   98  # bei singel node muss der master auch normale pods aufgnehmen kömnnen statt nur systempods
+   99  kubectl taint nodes --all node-role.kubernetes.io/master-
+  100  # wenn kubectl nicht local genutzt wird dan brauch man die konfig
+  101  # mit scp auf client holen
+  102  cp /etc/kubernetes/admin.conf /home/tv/
+  103  chmod 644 /home/tv/admin.conf 
+  104  kubectl get pods --all-namespaces
+  105  kubectl --kubeconfig /etc/kubernetes/admin.conf get nodes
+  106  ifconfig
+  107  ip a
+  108  curl https://192.168.2.20:6443
+  109  # schnittstelle geht
+  110  # mit der admin.conf kan man von extern zugreifen
+  111  # achtung bei kubectl von extern -> ip ggf. von 10.xxx auf internet ip in admin.conf ändern
+  112  # ggf. auf client die internetip auf den lokalen namen legen, da die zertiufikate für die lokalen namen gemacht wurden
+  113  96 history -a
+  114  # ggf. auf client die internetip auf den lokalen namen legen, da die zertiufikate für die lokalen namen gemacht wurden
+  115  ps -ef
+  116  history 
+  117  reboot
+  118  ps -ef
+  119  yum install fail2ban
+  120  #sicherung
+  121  yum install epel-release
+  122  yum install fail2ban
+  123  systemctl enable fail2ban
+  124  systemctl start fail2ban
+  125  systemctl status fail2ban
+  126  cat /var/log/fail2ban.log 
+  127  ps -ef
+  128  systemctl status firewalld
+  129  firewall-cmd --zone=public --list-all| grep 6443
+  130  firewall-cmd --zone=public --add-port=6443/tcp --permanent
+  131  # fw kubectl
+  132  firewall-cmd --zone=public --list-all| grep 6443
+  133  firewall-cmd --zone=public --list-all
+  134  iptables
+  135  iptables -L
+  136  telnet localhost 6443
+  137  curl https://localhost:6443
+  138  ##kube dashboard
+  139  kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+  140    106  # firewall / iptable smuss auf port 443 erweitetr werden
+  141  firewall-cmd --zone=public --add-port=443/tcp --permanent
+  142  firewall-cmd --reload
+  143  telnet localhost 443
+  144  curl https://localhost:443
+  145  curl https://localhost:8443
+  146  kubectl get pods --all-namespaces
+  147  history -a
+  148  history 
