@@ -1,34 +1,34 @@
 [root@kube ~]# history 
-    1  ps -ef
-    2  ifconfig
-    3  ip a
-    4  ### sshd keepalive einrichten wegens nat und firewall timeout beim speedport
-    5  vi /etc/ssh/sshd_config 
-    6  cp /etc/ssh/sshd_config /etc/ssh/sshd_config.20180426
-    7  vi /etc/ssh/sshd_config 
-    8  diff /etc/ssh/sshd_config /etc/ssh/sshd_config.20180426
-    9  #< ClientAliveInterval 300
-   10  #< ClientAliveCountMax 3
-   11  #> #ClientAliveInterval 0
-   12  #> #ClientAliveCountMax 3
-   13  systemctl restart sshd
-   14  ##fail2ban
-   15  yum install epel-release
-   16  yum -y install fail2ban
-   17  systemctl enable fail2ban
-   18  systemctl start fail2ban
-   19  systemctl status fail2ban
-   20  cat /var/log/fail2ban.log 
-   21  #### selinux prüfen und auf disabled stellen
-   22  cp /etc/sysconfig/selinux /etc/sysconfig/selinux.20180426
-   23  vi /etc/sysconfig/selinux
-   24  diff /etc/sysconfig/selinux /etc/sysconfig/selinux.20180426
-   25  #< SELINUX=disabled
-   26  #> SELINUX=enforcing
-   27  history -a
-   28  yum -y upgrade
-   29  #netzwerk anpasen centos
-   30  cat <<EOF > /etc/sysctl.d/k8s.conf
-   31  #nnaja
-   32  history 
+ps -ef
+ifconfig
+ip a
+### sshd keepalive einrichten wegens nat und firewall timeout beim speedport
+vi /etc/ssh/sshd_config 
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config.20180426
+vi /etc/ssh/sshd_config 
+diff /etc/ssh/sshd_config /etc/ssh/sshd_config.20180426
+#< ClientAliveInterval 300
+#< ClientAliveCountMax 3
+#> #ClientAliveInterval 0
+#> #ClientAliveCountMax 3
+systemctl restart sshd
+##fail2ban
+yum install epel-release
+yum -y install fail2ban
+systemctl enable fail2ban
+systemctl start fail2ban
+systemctl status fail2ban
+cat /var/log/fail2ban.log 
+#### selinux prüfen und auf disabled stellen
+cp /etc/sysconfig/selinux /etc/sysconfig/selinux.20180426
+vi /etc/sysconfig/selinux
+diff /etc/sysconfig/selinux /etc/sysconfig/selinux.20180426
+#< SELINUX=disabled
+#> SELINUX=enforcing
+history -a
+yum -y upgrade
+#netzwerk anpasen centos
+cat <<EOF > /etc/sysctl.d/k8s.conf
+#nnaja
+history 
 ##swap aus!!!!
