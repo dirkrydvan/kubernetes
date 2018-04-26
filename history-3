@@ -1,0 +1,537 @@
+  223  # ok eopel anders aktivuieren
+  224  # epel
+  225  yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+  226  yum install certbot
+  227  certbot --hel
+  228  certbot --help
+  229  certbot -d *.augustusburg.org --manual --preferred-challenges dns certonl
+  230  certbot -d *.augustusburg.org --manual --preferred-challenges dns certonly
+  231  ls /etc/letsencrypt/
+  232  ls /etc/letsencrypt/*
+  233  certbot -d *.augustusburg.org --manual --preferred-challenges dns certonly
+  234  certbot -d *.augustusburg.org --manual --preferred-challenges dns certonly --server https://acme-v02.api.letsencrypt.org/directory
+  235  tar xvfz /home/linux/etc-letsencryp.tar.gz /etc/letsencrypt
+  236  tar cvfz /home/linux/etc-letsencryp.tar.gz /etc/letsencrypt
+  237  history -a
+  238  netstat -an| grep 443
+  239  # dashboard die zweite
+  240  curl https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+  241  curl https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml > kubernetes-dashboard.yaml
+  242  vi kubernetes-dashboard.yaml
+  243  kubectl apply -f kubernetes-dashboard.yaml
+  244  curl 10.0.0.231:8443
+  245  netstat -an| grep 443
+  246  kubectl delte deployment kubernetes-dashboard
+  247  kubectl delwte deployment kubernetes-dashboard
+  248  kubectl delete deployment kubernetes-dashboard
+  249  kubectl delete deployment kubernetes-dashboard -n kube-system
+  250  kubectl apply -f kubernetes-dashboard.yaml
+  251  netstat -an| grep 443
+  252  netstat -an| grep 8443
+  253  vi kubernetes-dashboard.yaml
+  254  kubectl apply -f kubernetes-dashboard.yaml
+  255  netstat -an| grep 1443
+  256  vi kubernetes-dashboard.yaml
+  257  netstat -an| grep 8443
+  258  ps -ef
+  259  history 
+  260  kubectl apply -f kubernetes-dashboard.yaml
+  261  ls
+  262  vi kubernetes-dashboard.yaml 
+  263  ls
+  264  ###imgress
+  265  git clone https://github.com/nginxinc/kubernetes-ingress/tree/master/install
+  266  git clone https://github.com/nginxinc/kubernetes-ingress/tree/master
+  267  git clone https://github.com/nginxinc/kubernetes-ingress
+  268  ls
+  269  cd kubernetes-ingress/
+  270  ls
+  271  cd ..
+  272  kubectl apply -f kubernetes-ingress/install/common/ns-and-sa.yaml 
+  273  cat kubernetes-ingress/install/common/ns-and-sa.yaml
+  274  ##namespace
+  275  kubectl apply -f common/default-server-secret.yaml
+  276  kubectl apply -f kubernetes-ingress/install/common/default-server-secret.yaml
+  277  cat kubernetes-ingress/install/common/default-server-secret.yaml
+  278  cat kubernetes-ingress/install/common/nginx-config.yaml
+  279  cat kubernetes-ingress/install/rbac/rbac.yaml
+  280  kubectl apply -f kubernetes-ingress/install/rbac/rbac.yaml
+  281  kubectl apply -f kubernetes-ingress/install/deployment/nginx-ingress.yaml
+  282  cat kubernetes-ingress/install/deployment/nginx-ingress.yaml
+  283  cat kubernetes-ingress/install/daemon-set/nginx-ingress.yaml
+  284  kubectl apply -f kubernetes-ingress/install/daemon-set/nginx-ingress.yaml
+  285  kubectl get pods --namespace=nginx-ingress
+  286  cat kubernetes-ingress/install/service/nodeport.yaml 
+  287  kubectl apply -f kubernetes-ingress/install/kubernetes-ingress/install/
+  288  kubectl apply -f kubernetes-ingress/install/service/nodeport.yaml
+  289  kubectl get ingress
+  290  kubectl get ingress --all-namespace
+  291  kubectl get ingress --all-namespaces
+  292  netstat -rna| grep 443
+  293  netstat -rna
+  294  netstat -na
+  295  netstat -na| grep tcp
+  296  netstat -na| grep 443
+  297  kubectl describe secret kubernetes-dashboard-token-jpkhs
+  298  kubectl get pods --all-namescpace
+  299  kubectl get pods --all-namescpaces
+  300  kubectl get pods --all-namespaces
+  301  kubectl get secret 
+  302  kubectl get secret --all-namespaces
+  303  kubectl describe secret kubernetes-dashboard-token-jpkhs
+  304  reboot
+  305  kubectl describe secret kubernetes-dashboard-token-jpkhs
+  306  kubectl get secret --all-namespaces
+  307  uptime 
+  308  kubectl get secret --all-namespaces
+  309  kubectl describe secret kubernetes-dashboard-token-jpkhs
+  310  kubectl -n kube-system get secret| grep kubernetes-dashboard
+  311  kubectl describe secret kubernetes-dashboard-token-jpkhs
+  312  kubectl -n kube-system describe secret kubernetes-dashboard-token-jpkhs
+  313  kubectl apply -f kubernetes-dashboard.yaml
+  314  vi kubernetes-dashboard.yaml 
+  315  kubectl apply -f kubernetes-dashboard.yaml
+  316  vi kubernetes-dashboard.yaml 
+  317  history -a
+  318  catv kubernetes-dashboard.yaml 
+  319  cat kubernetes-dashboard.yaml 
+  320  netstat -na| grep tcp
+  321  netstat -na| grep 443
+  322  cat kubernetes-ingress/service/nodeport.yaml
+  323  cat kubernetes-ingress/install/service/nodeport.yaml 
+  324  kubectl apply -f  kubernetes-ingress/install/service/nodeport.yaml 
+  325  kubectl -n describe service nginx-ingress
+  326  kubectl describe service nginx-ingress --all-namesapces
+  327  kubectl describe service nginx-ingress --all-namesapce
+  328  kubectl describe service nginx-ingress --all-namespaces
+  329  kubectl get service nginx-ingress --all-namespaces
+  330  cat kubernetes-ingress/install/service/nodeport.yaml 
+  331  kubectl get service nginx-ingress -n nginx-ingress
+  332  vi kubernetes-ingress/install/service/nodeport.yaml 
+  333  ps
+  334  ps -ef
+  335  reboot
+  336  ps -ef
+  337  kubectl describe secret kubernetes-dashboard-token-jpkhs
+  338  uptime 
+  339  ls
+  340  vi kubernetes-dashboard.yaml 
+  341  history | grep dash
+  342  kubectl apply -f kubernetes-dashboard.yaml
+  343  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  344  kubectl get services -n kube-system
+  345  kubectl get services -n nginx-ingress
+  346  curl portal.augustusburg.org 30002
+  347  curl portal.augustusburg.org:30002
+  348  curl https://portal.augustusburg.org:30002
+  349  netstat -ra| grep tcp
+  350  netstat -na| grep tcp
+  351  netstat -na| grep 300
+  352  telnet localhost 30002
+  353  kubectl get services -n nginx-ingress
+  354  ls
+  355  vi kubernetes-ingress/install/service/nodeport.yaml 
+  356  kubectl get services -n nginx-ingress
+  357  vi kubernetes-ingress/install/service/nodeport.yaml 
+  358  kubectl get services -n nginx-ingress
+  359  vi kubernetes-ingress/install/service/nodeport.yaml 
+  360  kubectl get services -n nginx-ingress
+  361  kubectl get nodes -o yaml | grep ExternalIP -C 1
+  362  kubectl get nodes -o yaml | grep ExternalIP 
+  363  kubectl get nodes
+  364  kubectl get nodes -o yaml 
+  365  vi kubernetes-ingress/install/service/nodeport.yaml 
+  366  kubectl apply -f kubernetes-ingress/install/service/nodeport.yaml 
+  367  kubectl get services -n nginx-ingress
+  368  vi kubernetes-ingress/install/service/nodeport.yaml 
+  369  kubectl get services -n nginx-ingress
+  370  kubectl apply -f kubernetes-ingress/install/service/nodeport.yaml 
+  371  kubectl get services -n nginx-ingress
+  372  vi kubernetes-ingress/install/service/nodeport.yaml 
+  373  kubectl get services -n nginx-ingress
+  374  kubectl apply -f kubernetes-ingress/install/service/nodeport.yaml 
+  375  kubectl get services -n nginx-ingress
+  376  vi kubernetes-ingress/install/service/nodeport.yaml 
+  377  kubectl apply -f kubernetes-ingress/install/service/nodeport.yaml 
+  378  vi kubernetes-ingress/install/service/nodeport.yaml 
+  379  kubectl get services -n nginx-ingress
+  380  vi kubernetes-ingress/install/service/nodeport.yaml 
+  381  kubectl apply -f kubernetes-ingress/install/service/nodeport.yaml 
+  382  kubectl get services -n nginx-ingress
+  383  vi kubernetes-ingress/install/service/nodeport.yaml 
+  384  kubectl apply -f kubernetes-ingress/install/service/nodeport.yaml 
+  385  kubectl get services -n nginx-ingress
+  386  vi kubernetes-ingress/install/service/nodeport.yaml 
+  387  kubectl apply -f kubernetes-ingress/install/service/nodeport.yaml 
+  388  kubectl get services -n nginx-ingress
+  389  vi kubernetes-ingress/install/service/nodeport.yaml 
+  390  kubectl apply -f kubernetes-ingress/install/service/nodeport.yaml 
+  391  kubectl get services -n nginx-ingress
+  392  vi kubernetes-ingress/install/service/nodeport.yaml 
+  393  kubectl get services -n nginx-ingress
+  394  kubectl apply -f kubernetes-ingress/install/service/nodeport.yaml 
+  395  kubectl get services -n nginx-ingress
+  396  vi kubernetes-ingress/install/service/nodeport.yaml 
+  397  kubectl apply -f kubernetes-ingress/install/service/nodeport.yaml 
+  398  kubectl get services -n nginx-ingress
+  399  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  400  vi kubernetes-dashboard.yaml 
+  401  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  402  vi kubernetes-dashboard.yaml 
+  403  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  404  kubectl get services -n kube-system
+  405  vi kubernetes-dashboard.yaml 
+  406  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  407  vi kubernetes-dashboard.yaml 
+  408  kubectl get services -n kube-system
+  409  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  410  kubectl get services -n kube-system
+  411  kubectl expose kube-system/kubernetes-dashboard --type="NodePort" --port 443
+  412  kubectl expose deployment/kubernetes-dashboard --type="NodePort" --port 443
+  413  kubectl expose kubernetes-dashboard --type="NodePort" --port 443
+  414  kubectl expose service/kubernetes-dashboard --type="NodePort" --port 443
+  415  kubectl get services -n kube-system
+  416  kubectl get deploymnets -n kube-system
+  417  kubectl get deployments -n kube-system
+  418  kubectl expose deployments/kubernetes-dashboard --type="NodePort" --port 443
+  419  kubectl expose deployment/kubernetes-dashboard --type="NodePort" --port 443
+  420  kubectl expose deployment/kubernetes-dashboard --type="NodePort" --port 443 -n kube-system
+  421  vi kubernetes-dashboard.yaml 
+  422  kubectl apply -f kubernetes-ingress/install/service/nodeport.yaml 
+  423  cat kubernetes-ingress/install/service/nodeport.yaml 
+  424  vi kubernetes-dashboard.yaml 
+  425  cp kubernetes-dashboard.yaml kubernetes-dashboard.yaml.20180423
+  426  vi kubernetes-dashboard.yaml 
+  427  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  428  kubectl get services -n kube-system
+  429  iptables -F
+  430  vi kubernetes-dashboard.yaml 
+  431  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  432  kubectl get services -n kube-system
+  433  telnet localhost 30081
+  434  netstat -na| grep 30
+  435  iptables -L
+  436  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  437  iptables -L
+  438  kubectl get services -n nginx-ingress
+  439  kubectl apply -f kubernetes-ingress/install/service/nodeport.yaml 
+  440  cat kubernetes-ingress/install/service/nodeport.yaml | kubectl replace --force -f -
+  441  kubectl get services -n nginx-ingress
+  442  reboot
+  443  kubectl get services --all-namespaces
+  444  netstat -na| grep 443
+  445  vi kubernetes-dashboard
+  446  vi kubernetes-dashboard.yaml
+  447  sysctl -q -w net.ipv6.conf.all.disable_ipv6=1
+  448  netstat -na| grep 443
+  449  sysctl -q -w net.ipv6.conf.all.disable_ipv6=1
+  450  netstat -na| grep 443
+  451  curl http://localhost:31443
+  452  curl https://localhost:31443
+  453  sysctl -q -w net.ipv6.conf.all.disable_ipv6=1
+  454  history -a
+  455  kubectl get secrets
+  456  kubectl get secrets -n kube-system
+  457  kubectl discribe secret kubernetes-dashboard-token-89ff6
+  458  kubectl describe secret kubernetes-dashboard-token-89ff6
+  459  kubectl describe secret kubernetes-dashboard-token-89ff6 -n kube-system
+  460  history -a
+  461  history | grep dash
+  462  kubectl create secret generic kubernetes-dashboard-certs --from-file=$HOME/certs -n kube-system
+  463  kubectl delete secret kubernetes-dashboard-certs -n kube-system
+  464  kubectl create secret generic kubernetes-dashboard-certs --from-file=certs/ -n kube-system
+  465  kubectl list secret
+  466  kubectl get secret
+  467  kubectl get secret -n kube-system
+  468  kubectl desccribe kubernetes-dashboard-certs 
+  469  kubectl describe kubernetes-dashboard-certs 
+  470  kubectl describe kubernetes-dashboard-certs -n kube-system
+  471  kubectl describe sectret kubernetes-dashboard-certs -n kube-system
+  472  kubectl describe secret kubernetes-dashboard-certs -n kube-system
+  473  ls certs/
+  474  ls
+  475  kubectl delete secret kubernetes-dashboard-certs -n kube-system
+  476  ls /etc/letsencrypt/live/augustusburg.org/README 
+  477  cat /etc/letsencrypt/live/augustusburg.org/README
+  478  ls certs/
+  479  mv dashboard.* certs/
+  480  kubectl create secret generic kubernetes-dashboard-certs --from-file=certs -n kube-system
+  481  kubectl get secret -n kube-system
+  482  kubectl describe secret kubernetes-dashboard-certs -n kube-system
+  483  cat kubernetes-dashboard.yaml | kubectl replace --force -f -
+  484  delte deployment kubernetes-dashboard
+  485  kubectl delete deployment kubernetes-dashboard
+  486  kubectl delete deployment kubernetes-dashboard -n kube-system
+  487  kubectl describe secret kubernetes-dashboard-certs -n kube-system
+  488  kubectl create secret generic kubernetes-dashboard-certs --from-file=certs -n kube-system
+  489  kubectl delete secret kubernetes-dashboard-certs -n kube-system
+  490  kubectl create secret generic kubernetes-dashboard-certs --from-file=certs -n kube-system
+  491  kubectl describe secret kubernetes-dashboard-certs -n kube-system
+  492  kubectl apply- f kubernetes-dashboard.yaml
+  493  kubectl apply -f kubernetes-dashboard.yaml
+  494  cat kubernetes-dashboard.yaml
+  495  kubectl get services --all-namespaces
+  496  netstat -na
+  497  netstat -na| grep 314
+  498  kubectl get services --all-namespaces
+  499  kubectl get pods --all-namespaces
+  500  kubectl describe pod kubernetes-dashboard-7d5dcdb6d9-79zwb
+  501  kubectl describe pod kubernetes-dashboard-7d5dcdb6d9-79zwb -n kube-system
+  502  kubectl get pods --all-namespaces
+  503  kubectl delete deployment kubernetes-dashboard -n kube-system
+  504  kubectl get pods --all-namespaces
+  505  history -a
+  506  ps -ef
+  507  kubectl get services -n nginx-ingress
+  508  kubectl delete namespace nginx-ingress
+  509  ps -ef
+  510  kubectl get services -n nginx-ingress
+  511  kubectl get services 
+  512  kubectl get services --all
+  513  kubectl get services --all-namespaces
+  514  kubectl get ingress --all-namespaces
+  515  kuectl delete ingress kubernetes-dashboard-ingress 
+  516  kubectl delete ingress kubernetes-dashboard-ingress 
+  517  kubectl get ingress --all-namespaces
+  518  kubectl get services -n nginx-ingress
+  519  vi kubernetes-dashboard.yaml 
+  520  cp kubernetes-dashboard.yaml.20180423 kubernetes-dashboard.yaml
+  521  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  522  vi kubernetes-dashboard.yaml 
+  523  cat kubernetes-ingress/install/service/nodeport.yaml 
+  524  vi kubernetes-dashboard.yaml 
+  525  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  526  kubectl get services -n nginx-ingress
+  527  kubectl get services -n kube-system
+  528  vi kubernetes-dashboard-ingress.yaml
+  529  kubectl apply -f kubernetes-dashboard-ingress.yaml
+  530  vi kubernetes-dashboard-ingress.yaml
+  531  kubectl apply -f kubernetes-dashboard-ingress.yaml
+  532  vi kubernetes-dashboard-ingress.yaml
+  533  kubectl apply -f kubernetes-dashboard-ingress.yaml
+  534  kubectl get services -n nginx-ingress
+  535  kubectl get services -n kube-system
+  536  vi kubernetes-dashboard.yaml 
+  537  vi kubernetes-dashboard-ingress.yaml
+  538  kubectl apply -f kubernetes-dashboard-ingress.yaml
+  539  vi kubernetes-dashboard-ingress.yaml
+  540  vi kubernetes-dashboard.yaml 
+  541  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  542  vi kubernetes-dashboard.yaml 
+  543  cat kubernetes-ingress/install/service/nodeport.yaml 
+  544  vi kubernetes-dashboard.yaml 
+  545  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  546  kubectl get services -n kube-system
+  547  curl https://localhost:31443
+  548  telnet localhost  31443
+  549  curl https://localhost:31443
+  550  curl http://localhost:31443
+  551  vi kubernetes-dashboard.yaml 
+  552  kubectl get services -n kube-system
+  553  kubectl discribe kubernetes-dashboard 
+  554  kubectl discribe pod 
+  555  kubectl get pods
+  556  kubectl get pod
+  557  kubectl get pod --all-namespaces
+  558  kubectl describe kubernetes-dashboard-7d5dcdb6d9-ddvjm
+  559  kubectl -n kube-system describe kubernetes-dashboard-7d5dcdb6d9-ddvjm
+  560  kubectl -n kube-system describe pod kubernetes-dashboard-7d5dcdb6d9-ddvjm
+  561  kubectl -n kube-system describe pod kubernetes-dashboard-7d5dcdb6d9-ddvjm|more
+  562  kubectl -n kube-system get token
+  563  kubectl -n kube-system get secret
+  564  kubectl -n kube-system get secret| grep dash
+  565  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  566  kubectl -n kube-system get secret| grep dash
+  567  kubectl get pod --all-namespaces
+  568  kubectl delete kubernetes-dashboard-7d5dcdb6d9-ddvjm
+  569  kubectl delete kubernetes-dashboard-7d5dcdb6d9-ddvjm --all
+  570  kubectl delete pod kubernetes-dashboard-7d5dcdb6d9-ddvjm --all
+  571  kubectl delete pod kubernetes-dashboard-7d5dcdb6d9-ddvjm --all-namespaces
+  572  kubectl delete deployment kubernetes-dashboard
+  573  history | grep deploment
+  574  kubectl delete deployment kubernetes-dashboard -n kube-system
+  575  kubectl apply -f kubernetes-dashboard
+  576  kubectl apply -f kubernetes-dashboard.yaml
+  577  kubectl get pod --all-namespaces
+  578  kubectl get services -n kube-system
+  579  curl http://localhost:31443
+  580  kubectl get pod --all-namespaces
+  581  curl https://localhost:31443
+  582  kubectl descibe pod kubernetes-dashboard-7d5dcdb6d9-zkbht
+  583  kubectl describe pod kubernetes-dashboard-7d5dcdb6d9-zkbht
+  584  kubectl describe pod kubernetes-dashboard-7d5dcdb6d9-zkbht -n kube-system
+  585  curl https://localhost:31443
+  586  vi kubernetes-dashboard.yaml 
+  587  cat kubernetes-ingress/install/service/nodeport.yaml 
+  588  vi kubernetes-dashboard.yaml 
+  589  kubectl apply -f kubernetes-dashboard.yaml
+  590  kubectl get services -n kube-system
+  591  curl https://localhost:31443
+  592  kubectl get svc kube-dns -o yaml
+  593  kubectl get service kube-dns -o yaml
+  594  kubectl -n kube-system get service kube-dns -o yaml
+  595  curl https://localhost:31443
+  596  ls
+  597  cat kubernetes-dashboard
+  598  cat kubernetes-dashboard.yaml
+  599  kubectl get pods --all-namespaces
+  600  reboot
+  601  kubectl get pods --all-namespaces
+  602  kubectl describe pod kubernetes-dashboard-7d5dcdb6d9-zkbht -n kube-system
+  603  kubectl get services -n kube-system
+  604  kubectl delte service kubernetes-dashboard
+  605  kubectl delwte service kubernetes-dashboard
+  606  kubectl delete service kubernetes-dashboard
+  607  kubectl delete service kubernetes-dashboard -n kube-system
+  608  kubectl delte service kubernetes-dashboard
+  609  kubectl get pods --all-namespaces
+  610  kubectl get services -n kube-system
+  611  kubectl create secret generic kubernetes-dashboard-certs --from-file=/root/certs -n kube-system
+  612  kubectl delete secret kubernetes-dashboard-certs
+  613  kubectl delete secret kubernetes-dashboard-certs -n kube-system
+  614  kubectl create secret generic kubernetes-dashboard-certs --from-file=/root/certs -n kube-system
+  615  kubectl discribe secret kubernetes-dashboard-certs 
+  616  kubectl describe secret kubernetes-dashboard-certs 
+  617  kubectl describe secret kubernetes-dashboard-certs -n kube-system
+  618  vi kubernetes-dashboard.yaml
+  619  kubectl apply -f kubernetes-dashboard.yaml
+  620  kubectl get services -n kube-system
+  621  history -a
+  622  curl localhost:31443
+  623  sysctl -q -w net.ipv6.conf.all.disable_ipv6=1
+  624  curl localhost:31443
+  625  netstat -an
+  626  netstat -an | grep 443
+  627  curl localhost:31443
+  628  netstat -an | grep 443
+  629  curl https://localhost:31443
+  630  history -a
+  631  reboot
+  632  curl https://localhost:31443
+  633  curl http://localhost:31443
+  634  history -a
+  635  kubectl get services -n kube-system
+  636  curl http://localhost:31443
+  637  iptables -F
+  638  curl http://localhost:31443
+  639  sysctl -q -w net.ipv6.conf.all.disable_ipv6=1
+  640  curl http://localhost:31443
+  641  kubectl apply -f kubernetes-dashboard.yaml
+  642  kubectl get services -n kube-system
+  643  kubectl get pods -n kube-system
+  644  kubectl delte pod kubernetes-dashboard-7d5dcdb6d9-b9wln -n kube-system
+  645  kubectl delete pod kubernetes-dashboard-7d5dcdb6d9-b9wln -n kube-system
+  646  kubectl get pods -n kube-system
+  647  kubectl describe pod kubernetes-dashboard-7d5dcdb6d9-ttwgk
+  648  kubectl describe pod kubernetes-dashboard-7d5dcdb6d9-ttwgk -n kube-system
+  649  kubectl get pods -n kube-system
+  650  kubectl delete pod kubernetes-dashboard-7d5dcdb6d9-ttwgk -n kube-system
+  651  kubectl get pods -n kube-system
+  652  kubectl describe pod kubernetes-dashboard-7d5dcdb6d9-8xn7d -n kube-system
+  653  reboot
+  654  kubectl get pods -n kube-system
+  655  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  656  kubectl get pods -n kube-system
+  657  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  658  kubectl get pods -n kube-system
+  659  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  660  kubectl get pods -n kube-system
+  661  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  662  kubectl get pods -n kube-system
+  663  kubectl delete pod kubernetes-dashboard-7d5dcdb6d9-8xn7d -n kube-system
+  664  kubectl get pods -n kube-system
+  665  kubectl delete pod kubernetes-dashboard-7d5dcdb6d9-8xn7d -n kube-system
+  666  kubectl get pods -n kube-system
+  667  kubectl get püods
+  668  kubectl get pods
+  669  kubectl get pods -n kube-system
+  670  kubectl get services -n kube-system
+  671  curl localhost:31443
+  672  sysctl -q -w net.ipv6.conf.all.disable_ipv6=1
+  673  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  674  kubectl get services -n kube-system
+  675  kubectl get pods -n kube-system
+  676  curl localhost:31443
+  677  history | grep sysct
+  678  vi /etc/sysctl.d/k8s.conf
+  679  history -a
+  680  vi /etc/sysctl.d/k8s.conf
+  681  netstat -na
+  682  netstat -na| grep 443
+  683  history -a
+  684  ##netz !!!!
+  685  reboot
+  686  netstat -na| grep 443
+  687  kubectl get pods -n kube-system
+  688  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  689  kubectl get pods -n kube-system
+  690  kubectl delete pod kubernetes-dashboard-7d5dcdb6d9-xh2mc -n kube-system
+  691  kubectl get pods -n kube-system
+  692  kubectl describe secret kubernetes-dashboard-certs -n kube-system
+  693  kubectl delete secret kubernetes-dashboard-certs -n kube-system
+  694  kubectl create secret generic kubernetes-dashboard-certs --from-file=/root/certs -n kube-system
+  695  kubectl describe secret kubernetes-dashboard-certs -n kube-system
+  696  kubectl get pods -n kube-system
+  697  kubectl delete pod kubernetes-dashboard-7d5dcdb6d9-kflwx -n kube-system
+  698  kubectl get pods -n kube-system
+  699  kubectl delete pod kubernetes-dashboard-7d5dcdb6d9-66qk2 -n kube-system
+  700  kubectl get pods -n kube-system
+  701  kubectl describe secret kubernetes-dashboard-certs -n kube-system
+  702  kubectl create secret generic kubernetes-dashboard-certs --from-file=/root/certs -n kube-system
+  703  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  704  kubectl describe secret kubernetes-dashboard-certs -n kube-system
+  705  kubectl get pods -n kube-system
+  706  kubectl delete pod kubernetes-dashboard-7d5dcdb6d9-qfjml -n kube-system
+  707  kubectl get pods -n kube-system
+  708  kubectl delete secret kubernetes-dashboard-certs -n kube-system
+  709  kubectl create secret generic kubernetes-dashboard-certs --from-file=/root/certs -n kube-system
+  710  kubectl describe secret kubernetes-dashboard-certs -n kube-system
+  711  kubectl get pods -n kube-system
+  712  sysctl -q -w net.ipv6.conf.all.disable_ipv6=1
+  713  kubectl get pods -n kube-system
+  714  kubectl delete pod kubernetes-dashboard-7d5dcdb6d9-7d59m -n kube-system
+  715  kubectl get pods -n kube-system
+  716  kubectl apply -f kubernetes-dashboard.yaml
+  717  kubectl get pods -n kube-system
+  718  kubectl delete pod kubernetes-dashboard-7d5dcdb6d9-lgkcb -n kube-system
+  719  kubectl get pods -n kube-system
+  720  kubectl delete pod kubernetes-dashboard-7d5dcdb6d9-dnksk -n kube-system
+  721  kubectl get pods -n kube-system
+  722  kubectl apply -f kubernetes-dashboard.yaml
+  723  cat kubernetes-dashboard.yaml| kubectl replace --force -f -
+  724  kubectl get pods -n kube-system
+  725  kubectl delete pod kubernetes-dashboard-7d5dcdb6d9-xggln -n kube-system
+  726  kubectl get pods -n kube-system
+  727  ls
+  728  cp /etc/letsencrypt/live/augustusburg.org/cert.pem /root/certs/dashboard.crt 
+  729  kubectl delete secret kubernetes-dashboard-certs -n kube-system
+  730  kubectl create secret generic kubernetes-dashboard-certs --from-file=/root/certs -n kube-system
+  731  kubectl describe secret kubernetes-dashboard-certs -n kube-system
+  732  kubectl get pods -n kube-system
+  733  kubectl delete pod kubernetes-dashboard-7d5dcdb6d9-bgjfc -n kube-system
+  734  kubectl get pods -n kube-system
+  735  history -a
+  736  ###cert!! pem!!!!
+  737  cp /etc/letsencrypt/live/augustusburg.org/cert.pem /root/certs/dashboard.crt 
+  738  ##geht
+  739  cp /etc/letsencrypt/live/augustusburg.org/chain.pem /root/certs/dashboard.crt 
+  740  kubectl delete secret kubernetes-dashboard-certs -n kube-system
+  741  kubectl create secret generic kubernetes-dashboard-certs --from-file=/root/certs -n kube-system
+  742  kubectl describe secret kubernetes-dashboard-certs -n kube-system
+  743  kubectl get pods -n kube-system
+  744  kubectl delete pod kubernetes-dashboard-7d5dcdb6d9-lgddx -n kube-system
+  745  kubectl get pods -n kube-system
+  746  ##chain.pem geht nicht
+  747  cp /etc/letsencrypt/live/augustusburg.org/fullchain.pem /root/certs/dashboard.crt 
+  748  kubectl delete secret kubernetes-dashboard-certs -n kube-system
+  749  kubectl create secret generic kubernetes-dashboard-certs --from-file=/root/certs -n kube-system
+  750  kubectl describe secret kubernetes-dashboard-certs -n kube-system
+  751  kubectl get pods -n kube-system
+  752  kubectl delete pod kubernetes-dashboard-7d5dcdb6d9-vkqck -n kube-system
+  753  kubectl get pods -n kube-system
+  754  ###fullchain.pem und cert.pem scheine nzu gehen!!!!!!
+  755  ###fulchain is wohl inkls unetrzertis... mal sehen
+  756  history -a
+  757  vi /etc/sysctl.d/k8s.conf
+  758  reboot
+  759  history 
