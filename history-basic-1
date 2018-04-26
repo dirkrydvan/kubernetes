@@ -12,6 +12,11 @@ systemctl restart sshd
 ##fail2ban
 yum -y install epel-release
 yum -y install fail2ban
+## sshd enabled[sshd]
+cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.conf.xxx
+vi /etc/fail2ban/jail.conf
+diff /etc/fail2ban/jail.conf  /etc/fail2ban/jail.conf.xxx
+#<enabled = true
 systemctl enable fail2ban
 systemctl start fail2ban
 systemctl status fail2ban
