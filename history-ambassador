@@ -1,0 +1,299 @@
+388  kubectl logs -f -n nginx-ingress nginx-ingress-64cd88d9bd-qdbg9
+  389  kubectl get pods -n nginx-ingress
+  390  kubectl -n nginx-ingress delete pod nginx-ingress-nv9xg
+  391  kubectl get pods -n nginx-ingress
+  392  kubectl logs -f -n nginx-ingress nginx-ingress-c7rh5
+  393  history | grep ingress
+  394  kubectl apply -f kubernetes-ingress/install/rbac/rbac.yaml
+  395  kubectl logs -f -n nginx-ingress nginx-ingress-c7rh5
+  396  kubectl get pods -n nginx-ingress
+  397  kubectl -n nginx-ingress delete pod nginx-ingress-64cd88d9bd-qdbg9
+  398  kubectl -n nginx-ingress delete pod nginx-ingress-c7rh5
+  399  kubectl get pods -n nginx-ingress
+  400  kubectl logs -f -n nginx-ingress nginx-ingress-64cd88d9bd-sk7bj
+  401  vi kubernetes-dashboard-ingress.yaml
+  402  kubectl apply -f kubernetes-dashboard-ingress.yaml 
+  403  kubectl logs -f -n nginx-ingress nginx-ingress-64cd88d9bd-sk7bj
+  404  kubectl apply -f kubernetes-ingress/examples/customization/nginx-config.yaml 
+  405  kubectl logs -f -n nginx-ingress nginx-ingress-64cd88d9bd-sk7bj
+  406  kubectl apply -f kubernetes-dashboard-ingress.yaml 
+  407  cat kubernetes-ingress/install/common/default-server-secret.yaml |kubectl replace --force -f -
+  408  kubectl logs -f -n nginx-ingress nginx-ingress-64cd88d9bd-sk7bj
+  409  cp kubernetes-ingress/examples/customization/nginx-config.yaml nginx-config-mode.yaml
+  410  vi nginx-config-mode.yaml
+  411  kubectl apply -f nginx-config-mode.yaml 
+  412  kubectl logs -f -n nginx-ingress nginx-ingress-64cd88d9bd-sk7bj
+  413  vi nginx-config-mode.yaml
+  414  kubectl apply -f nginx-config-mode.yaml 
+  415  kubectl logs -f -n nginx-ingress nginx-ingress-64cd88d9bd-sk7bj
+  416  vi nginx-config-mode.yaml
+  417  kubectl apply -f nginx-config-mode.yaml 
+  418  kubectl logs -f -n nginx-ingress nginx-ingress-64cd88d9bd-sk7bj
+  419  vi nginx-config-mode.yaml
+  420  cp kubernetes-ingress/examples/customization/nginx-config.yaml nginx-config-mode.yaml
+  421  kubectl apply -f nginx-config-mode.yaml 
+  422  vi nginx-config-mode.yaml
+  423  kubectl logs -f -n nginx-ingress nginx-ingress-64cd88d9bd-sk7bj
+  424  vi nginx-config-mode.yaml
+  425  kubectl apply -f nginx-config-mode.yaml 
+  426  kubectl logs -f -n nginx-ingress nginx-ingress-64cd88d9bd-sk7bj
+  427  vi nginx-config-mode.yaml
+  428  kubectl delete namespace nginx-ingress
+  429  vi nginx-config-mode.yaml
+  430  kubectl get pods -n nginx-ingress
+  431  kubectl get pods --all-namespaces
+  432  kubectl get ingresses
+  433  kubectl delete kubernetes-dashboard-ingress
+  434  kubectl delete ingress kubernetes-dashboard-ingress 
+  435  kubectl get deplyoments
+  436  kubectl get deployments
+  437  kubectl delete  deployment
+  438  kubectl delete  deployment coffee tea
+  439  kubectl get pods --all-namespaces
+  440  cat /var/log/messages 
+  441  kubectl get pods --all-namespaces
+  442  ls
+  443  vi ambassador.yaml
+  444  kubectl apply -f ambassador.yaml 
+  445  kubectl apply -f https://getambassador.io/yaml/ambassador/ambassador-rbac.yaml
+  446  kubectl get svc -o wide ambassador
+  447  ls
+  448  vi ambassador-kubernetes-dashboard.yaml
+  449  kubectl -f ambassador-kubernetes-dashboard.yaml
+  450  kubectl apply -f ambassador-kubernetes-dashboard.yaml
+  451  vi ambassador-kubernetes-dashboard.yaml
+  452  kubectl apply -f ambassador-kubernetes-dashboard.yaml
+  453  kubectl get services
+  454  ls
+  455  vi ambassador-kubernetes-dashboard.yaml
+  456  kubectl apply -f ambassador-kubernetes-dashboard.yaml
+  457  vi ambassador-kubernetes-dashboard.yaml
+  458  kubectl get services
+  459  vi ambassador-kubernetes-dashboard.yaml
+  460  kubectl apply -f ambassador-kubernetes-dashboard.yaml
+  461  vi ambassador-kubernetes-dashboard.yaml
+  462  kubectl apply -f ambassador-kubernetes-dashboard.yaml
+  463  vi ambassador-kubernetes-dashboard.yaml
+  464  kubectl apply -f ambassador-kubernetes-dashboard.yaml
+  465  vi ambassador-kubernetes-dashboard.yaml
+  466  kubectl apply -f ambassador-kubernetes-dashboard.yaml
+  467  kubectl get services
+  468  kubectl get services --all-namespaces
+  469  kubectl delete service amb-db
+  470  kubectl get services --all-namespaces
+  471  vi ambassador-kubernetes-dashboard.yaml
+  472  ls
+  473  cat kubernetes-dashboard-service-org.yaml
+  474  vi ambassador-kubernetes-dashboard.yaml
+  475  kubectl apply -f ambassador-kubernetes-dashboard.yaml
+  476  kubectl get services --all-namespaces
+  477  vi ambassador-kubernetes-dashboard.yaml
+  478  kubectl apply -f ambassador-kubernetes-dashboard.yaml
+  479  vi ambassador-kubernetes-dashboard.yaml
+  480  ls
+  481  vi ambassador.yaml 
+  482  vi ambassador-https.yaml 
+  483  cp ambassador.yaml ambassador-https.yaml 
+  484  vi ambassador-https.yam
+  485  vi ambassador-https.yaml 
+  486  kubectl apply -f ambassador.yaml 
+  487  kubectl apply -f ambassador-https.yaml 
+  488  vi ambassador-https.yaml 
+  489  kubectl apply -f ambassador-https.yaml 
+  490  vi ambassador-https.yaml 
+  491  kubectl apply -f ambassador-https.yaml 
+  492  kubectl get services --all-namespaces
+  493  curl localhost:30080
+  494  curl http://localhost:30080
+  495  curl http://localhost:30100
+  496  curl http://192.168.2.20:30080
+  497  curl http://192.168.2.20:30080/httpbin
+  498  curl http://192.168.2.20:30080/httpbin/
+  499  curl https://192.168.2.20:30100/httpbin/
+  500  history | grep fire
+  501  firewall-cmd --zone=public --add-port=30100/tcp --permanent
+  502  #fw
+  503  curl https://192.168.2.20:30100/httpbin/
+  504  firewall-cmd 
+  505  firewall-cmd --list
+  506  iptables -L
+  507  curl http://192.168.2.20:30080/httpbin/
+  508  curl https://192.168.2.20:30100/httpbin/
+  509  kubectl get services --all-namespaces
+  510  curl https://192.168.2.20:32223
+  511  curl http://192.168.2.20:32223
+  512  curl http://192.168.2.20:32223/admin
+  513  curl http://192.168.2.20:32223
+  514  ls
+  515  tar xvfz /home/tv/etc-letsencryp.tar.gz 
+  516  ls
+  517  ##cert
+  518  history -a
+  519  kubectl create secret tls ambassador-certs --cert=etc/letsencrypt/live/augustusburg.org/chain.pem --key=etc/letsencrypt/live/augustusburg.org/privkey.pem -n default
+  520  kubectl create secret tls ambassador-certs --cert=etc/letsencrypt/live/augustusburg.org/cert.pem --key=etc/letsencrypt/live/augustusburg.org/privkey.pem -n default
+  521  curl https://192.168.2.20:30100/httpbin/
+  522  kubectl detele secret ambassador-certs
+  523  kubectl delete secret ambassador-certs
+  524  kubectl create secret tls ambassador-certs --cert=etc/letsencrypt/live/augustusburg.org/fullchain.pem --key=etc/letsencrypt/live/augustusburg.org/privkey.pem -n default
+  525  curl https://192.168.2.20:30100/httpbin/
+  526  vi ambassador-https.yaml 
+  527  kubectl apply -f ambassador-https.yaml
+  528  kubectl get services --all-namespaces
+  529  curl https://192.168.2.20:30100/httpbin/
+  530  vi ambassador-https.yaml 
+  531  kubectl apply -f ambassador-https.yaml
+  532  curl https://192.168.2.20:30100/httpbin/
+  533  ls
+  534  vi ambassador-kubernetes-dashboard.yaml 
+  535  kubectl apply -f ambassador-kubernetes-dashboard.yaml 
+  536  kubectl get services --all-namespaces
+  537  vi ambassador-kubernetes-dashboard.yaml 
+  538  vi ambassador-https.yaml 
+  539  curl https://www.getambassador.io/yaml/ambassador/ambassador-https.yaml > ambassador-https-org.yaml
+  540  vi ambassador-https-org.yaml
+  541  vi ambassador-https.yaml 
+  542  cat ambassador-https-org.yaml
+  543  vi ambassador-https.yaml 
+  544  kubectl create secret tls ambassador-certs --cert=etc/letsencrypt/live/augustusburg.org/fullchain.pem --key=etc/letsencrypt/live/augustusburg.org/privkey.pem -n default --dry-run -o yaml
+  545  kubectl create secret tls ambassador-certs --cert=etc/letsencrypt/live/augustusburg.org/fullchain.pem --key=etc/letsencrypt/live/augustusburg.org/privkey.pem -n default --dry-run -o yaml| kubectl replace -f -
+  546  kubectl get services --all-namespaces
+  547  curl https://192.168.2.20:30100/httpbin/
+  548  cat /var/log/messages 
+  549  cat /var/log/messages | grep amb
+  550  kubectl create secret tls ambassador-certs --cert=etc/letsencrypt/live/augustusburg.org/fullchain.pem --key=etc/letsencrypt/live/augustusburg.org/privkey.pem -n default --dry-run -o yaml| kubectl replace -f -
+  551  cat /var/log/messages | grep amb
+  552  tail /var/log/messages 
+  553  curl https://192.168.2.20:30100/httpbin/
+  554  netstat -nat
+  555  yum -y installa net-utils
+  556  yum -y install net-utils
+  557  yum provides netstat
+  558  yum -y install net-tools
+  559  ### net-tools
+  560  netstat -nat
+  561  netstat -nat| grep 443
+  562  netstat -nat| grep 30080
+  563  netstat -nat| grep 30100
+  564  ### net-tools
+  565  curl https://192.168.2.20:30100/httpbin/
+  566  curl https://localhost:30100/httpbin/
+  567  curl https://localhost:30100
+  568  curl https://localhost:30080
+  569  curl http://192.168.2.20:30080/httpbin/
+  570  curl https://192.168.2.20:30100/httpbin/
+  571  curl http://localhost:30080/httpbin/
+  572  curl https://192.168.2.20:30100/httpbin/
+  573  history | grep fw
+  574  history | grep fir
+  575  firewall-cmd --zone=public --del-port=30100/tcp --permanent
+  576  firewall-cmd --zone=public --del-port=30100/tcp 
+  577  firewall-cmd --zone=public --add-port=30080/tcp --permanent
+  578  curl https://192.168.2.20:30100/httpbin/
+  579  curl http://localhost:30080/httpbin/
+  580  curl http://192.168.2.20:30080/httpbin/
+  581  curl https://192.168.2.20:30100/httpbin/
+  582  kubectl create secret tls ambassador-certs --cert=etc/letsencrypt/live/augustusburg.org/fullchain.pem --key=etc/letsencrypt/live/augustusburg.org/privkey.pem -n default --dry-run -o yaml| kubectl replace -f -
+  583  kubectl apply -f ambassador-https.yaml
+  584  cat ambassador-https.yaml | kubectl replace -f -
+  585  vi ambassador-https.yaml 
+  586  cat ambassador-https.yaml | kubectl replace --force -f -
+  587  vi ambassador-https.yaml 
+  588  curl https://192.168.2.20:30100/httpbin/
+  589  netstat -nat
+  590  netstat -nat| grep 30100
+  591  curl https://192.168.2.20:30100/httpbin/
+  592  curl https://192.168.2.20:30100/
+  593  cat /var/log/messages | grep amb
+  594  tail /var/log/messages 
+  595  history -a
+  596  reboot
+  597  cat /var/log/fail2ban.log 
+  598  df -h
+  599  top 
+  600  ps -ef
+  601  tail /var/log/messages 
+  602  tail -1000 /var/log/messages 
+  603  tail -10000 /var/log/messages 
+  604  curl https://192.168.2.20:30100/
+  605  vi ambassador-https.yaml 
+  606  cat ambassador-https.yaml | kubectl replace --force -f -
+  607  tail -10000 /var/log/messages 
+  608  vi ambassador-https.yaml 
+  609  cat ambassador-https.yaml | kubectl replace --force -f -
+  610  ls
+  611  vi ambassador-kubernetes-dashboard.yam
+  612  vi ambassador-kubernetes-dashboard.yaml 
+  613  vi ambassador-https.yaml 
+  614  vi ambassador-kubernetes-dashboard.yaml 
+  615  cat ambassador-kubernetes-dashboard.yaml | kubectl replace --force -f -
+  616  vi ambassador-kubernetes-dashboard.yaml 
+  617  cat ambassador-kubernetes-dashboard.yaml | kubectl replace --force -f -
+  618  vi ambassador-kubernetes-dashboard.yaml 
+  619  ps -ef
+  620  ls
+  621  ### verschlüsseltes kubenetes-dashboard geht nicht über ambassador
+  622  cat kubernetes-dashboard-service-nodeport.yaml | kubectl replace --force -f -
+  623  cat kubernetes-dashboard-service-nodeport.yaml
+  624  ### nin mal grafan
+  625  git clone kubernetes-dashboard-service-nodeport.yaml
+  626  git clone https://github.com/bakins/minikube-prometheus-demo
+  627  ls
+  628  cd minikube-prometheus-demo/
+  629  ls
+  630  cat demo-script.sh 
+  631  ls
+  632  alias kubectl k
+  633  alias k kubectl
+  634  alias
+  635  alias k=kubectl
+  636  ls
+  637  k apply -f monitoring-namespace.yaml 
+  638  k apply -f prometheus-config.yaml 
+  639  k apply -f prometheus-deployment.yaml 
+  640  k apply -f prometheus-service.yaml 
+  641  k apply -f grafana-deployment.yaml 
+  642  cd .
+  643  cd
+  644  ls
+  645  cd minikube-prometheus-demo/
+  646  ls
+  647  k apply -f node-exporter-daemonset.yml 
+  648  vi grafana-service-ambassador.yaml
+  649  k apply grafana-service-ambassador.yaml
+  650  k apply -f grafana-service-ambassador.yaml
+  651  vi grafana-service-ambassador.yaml
+  652  k get services
+  653  k get services --all-anemsapces
+  654  k get services --all-namesapces
+  655  k get services --all-namesapce
+  656  k get services --all-namespaces
+  657  k delete service grafana
+  658  k delete service grafana -n kube-system
+  659  k get services --all-namespaces
+  660  vi grafana-service-ambassador.yaml
+  661  k apply -f grafana-service-ambassador.yaml
+  662  vi grafana-service-ambassador.yaml
+  663  k get services --all-namespaces
+  664  tail /var/log/messages 
+  665  vi grafana-service-ambassador.yaml
+  666  cd ..
+  667  ls
+  668  cat ambassador-https.yaml 
+  669  top
+  670  df -h
+  671  top
+  672  history -a
+  673  ### geht mit ambassador
+  674  history -a
+  675  history 
+  676  kubectl get namespaces 
+  677  kubectl get configmap --namespace=monitoring prometheus-config -o yaml
+  678  kubectl get deployments --namespace=monitoring
+  679  ubectl get services --namespace=monitoring prometheus -o yaml
+  680  kubectl get services --namespace=monitoring prometheus -o yaml
+  681  cd minikube-prometheus-demo/
+  682  ls
+  683  k get pods --all-namespaces
+  684  cd
+  685  history -a
+  686  history 
