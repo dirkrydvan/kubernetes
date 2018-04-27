@@ -319,6 +319,38 @@ spec:
   660  vi grafana-service-ambassador.yaml
   661  k apply -f grafana-service-ambassador.yaml
   662  vi grafana-service-ambassador.yaml
+  
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+  namespace: monitoring
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  grafana 
+      ## prefix geht nicht bei grafana wegens umlenkung von /grafana/ zu /login im stammverzeichnis
+      ## deshalb nur host als unterscheidung
+      prefix: /
+      host: kube.augustusburg.org:30100
+      ## serbicename punkt namespace
+      service: grafana.monitoring
+spec:
+  ports:
+  - name: grafana-plain
+    port: 80
+    protocol: TCP
+    targetPort: 3000
+  - name: grafana-ssl
+    port: 443
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    name: grafana
+  type: ClusterIP
+  
   663  k get services --all-namespaces
   664  tail /var/log/messages 
   665  vi grafana-service-ambassador.yaml
