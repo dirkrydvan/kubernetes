@@ -231,6 +231,52 @@
   618  vi ambassador-kubernetes-dashboard.yaml 
   619  ps -ef
   620  ls
+  ambassador-kubernetes-dashboard.yaml
+  ---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: ambassador
+  name: ambassador
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  httpbin_mapping
+      prefix: /httpbin/
+      service: httpbin.org:80
+      host_rewrite: httpbin.org
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  httpbin_mapping_https
+      prefix: /httpbin/
+      service: https://httpbin.org:443
+      host_rewrite: httpbin.org
+      ---
+#      apiVersion: ambassador/v0
+#      kind:  Module
+#      name:  tls
+#      config:
+#        server:
+#          enabled: True
+#          redirect_cleartext_from: 80
+spec:
+  type: NodePort
+  ports:
+  - name: ambassador
+    nodePort: 30080
+    port: 80
+    targetPort: 80
+  - name: ambassador-https
+    nodePort: 30100
+    port: 443
+    targetPort: 443
+  selector:
+    service: ambassador
+  
   621  ### verschlüsseltes kubenetes-dashboard geht nicht über ambassador
   622  cat kubernetes-dashboard-service-nodeport.yaml | kubectl replace --force -f -
   623  cat kubernetes-dashboard-service-nodeport.yaml
