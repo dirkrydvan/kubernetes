@@ -375,3 +375,338 @@ spec:
   684  cd
   685  history -a
   686  history 
+
+
+
+  821  kubectl get pods --all-namespaces
+  822  vi ambassador-service.yaml
+  823  history 
+  824  history -a
+  825  kubectl apply -f ambassador.yaml 
+  826  kubectl apply -f ambassador-service.yaml 
+  827  vi ambassador-service.yaml
+  828  kubectl apply -f ambassador-service.yaml 
+  829  kubectl get pods --all-namespaces
+  830  kubectl apply -f https://getambassador.io/yaml/ambassador/ambassador-rbac.yaml
+  831  kubectl get pods --all-namespaces
+  832  kubectl get servcie ambassador --all-namespaces
+  833  kubectl get service ambassador --all-namespaces
+  834  kubectl get services --all-namespaces
+  835  kubectl delete deployment coffee-svc
+  836  kubectl delete service coffee-svc
+  837  kubectl delete service tea-svc coffee-svc
+  838  kubectl get services --all-namespaces
+  839  kubectl apply -f ambassador-service.yaml 
+  840  vi  ambassador-service.yaml 
+  841  kubectl apply -f ambassador-service.yaml 
+  842  vi  ambassador-service.yaml 
+  843  kubectl apply -f ambassador-service.yaml 
+  844  kubectl get services --all-namespaces
+  845  kubectl delete service coffee-svc
+  846  kubectl delete service tea-svc
+  847  kubectl delete service qotm
+  848  kubectl get services --all-namespaces
+  849  kubectl apply -f ambassador-service.yaml 
+  850  kubectl get services --all-namespaces
+  851  vi  ambassador-service.yaml 
+  852  # geht
+  853  vi  ambassador-service.yaml 
+  854  # noch nicht
+  855  vi  ambassador-service.yaml 
+  856  kubectl get services --all-namespaces
+  857  firewall-cmd --status
+  858  firewall-cmd --state
+  859  firewall-cmd --list-all --zone=external
+  860  firewall-cmd --list-all --zone=public
+  861  history |grep firewall
+  862  firewall-cmd --zone=public --add-port=30080/tcp --permanent
+  863  firewall-cmd --zone=public --add-port=30100/tcp --permanent
+  864  firewall-cmd --list-all --zone=public
+  865  firewall-cmd --relaod
+  866  firewall-cmd --reload
+  867  firewall-cmd --list-all --zone=public
+  868  kubectl get services --all-namespaces
+  869  kubectl get pods  --all-namespaces
+  870  ## trort fw freischaltung gehts nicht
+  871  kubectl get pods  --all-namespaces
+  872  reboot?
+  873  reboot
+  874  kubectl get pods  --all-namespaces
+  875  firewall-cmd --list-all --zone=public
+  876  vi  ambassador-service.yaml 
+  877  kubectl get services --all-namespaces
+  878  kubectl delete service ambassador
+  879  ls
+  880  kubectl -f ambassador-service.yaml
+  881  kubectl apply -f ambassador-service.yaml
+  882  kubectl get services --all-namespaces
+  883  vi  ambassador-service.yaml 
+  884  curl httpbin.org
+  885  curl portal.augustusbugr.org:30080
+  886  curl portal.augustusburg.org:30080
+  887  curl portal.augustusburg.org:30080/httpbin/
+  888  ls
+  889  vi ambassadir-service-org.yaml
+  
+  HTTP allein - geht wenn kein Zertifikat angelehgt wurde
+  [root@portal ~]# cat ambassadir-service-org.yaml 
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: ambassador
+  name: ambassador
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  httpbin_mapping
+      prefix: /httpbin/
+      service: httpbin.org:80
+      host_rewrite: httpbin.org
+spec:
+  type: NodePort
+  ports:
+  - name: ambassador
+    nodePort: 30080
+    port: 80
+    targetPort: 80
+  selector:
+    service: ambassador
+
+
+  893  kubectl apply -f ambassadir-service-org.yaml 
+  
+  896  kubectl get services --all-namespaces
+  897  curl portal.augustusburg.org:30080
+  898  vi ambassadir-service-org.yaml
+  899  kubectl apply -f https://getambassador.io/yaml/ambassador/ambassador-rbac.yaml
+  900  kubectl get services --all-namespaces
+  901  # aha- nach korrektur service muss man das deplyoment nocheinmal machen!!!!
+  902  # jetzt gehte smit port 80 ambassadir-service-org.yaml
+  
+  
+  
+  903  # jetzt mal mit erweiterung port 443
+  904  kubectl apply -f ambassador-service.yaml
+  
+  
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    service: ambassador
+  name: ambassador
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  httpbin_mapping
+      prefix: /httpbin/
+      service: httpbin.org:80
+      host_rewrite: httpbin.org
+      ---
+      apiVersion: ambassador/v0
+      kind:  Module
+      name:  tls
+      config:
+        server:
+          enabled: True
+          redirect_cleartext_from: 80
+spec:
+  type: NodePort
+  ports:
+  - name: ambassador-http
+    nodePort: 30080
+    port: 80
+    targetPort: 80
+  - name: ambassador-https
+    nodePort: 30100
+    port: 443
+    targetPort: 443
+  selector:
+    service: ambassador
+
+  
+  905  kubectl get services --all-namespaces
+  906  ## erstmal geht port 80 noch 44 noch nicht - weil noch kein tzertifikat
+  907  ls
+  908  ls certs/
+  909  ls /etc/letsencrypt/live/augustusburg.org/
+  910  # so jetzt cert installieren ud schaune ob gelich https geht
+  911  kubectl create secret tls ambassador-certs --cert=etc/letsencrypt/live/augustusburg.org/fullchain.pem --key=etc/letsencrypt/live/augustusburg.org/privkey.pem -n default --dry-run -o yaml| kubectl replace -f -
+  912  # nein - das war das austauschkomandpo -a ber wir wolenja initinal das zert erzeugen
+  913  # oder importieren
+  914  kubectl create secret tls ambassador-certs --cert=/etc/letsencrypt/live/augustusburg.org/fullchain.pem --key=/etc/letsencrypt/live/augustusburg.org/privkey.pem -n default
+  915  # geht noch nicht -. mals ehen ob weiderholiung des deplay hilft
+  916  kubectl apply -f https://getambassador.io/yaml/ambassador/ambassador-rbac.yaml
+  917  ## geht imme rnoch nicht
+  918  schauen fw
+  919  firewall-cmd --list-all --zone=public
+  920  # nö - 30100 is offen
+  921  curl https://portal.augustusburg.org:30100/httpbin/
+  922  kubectl describe secret ambassador-certs
+  923  ## mal reboot
+  924  reboot
+  925  kubectl get services --all-namespaces
+  926  curl https://portal.augustusburg.org:30100/httpbin/
+  927  # mhh iergednwoie anders
+  928  ls
+  929  # nicht merh refused - aber timeout
+  930  curl https://portal.augustusburg.org:30100/httpbin/
+  931  vi ambassador-service.yaml 
+  932  kubectl apply -f ambassador-service.yaml
+  933  curl https://portal.augustusburg.org:30100/httpbin/
+  934  kubectl apply -f https://getambassador.io/yaml/ambassador/ambassador-rbac.yaml
+  935  curl https://portal.augustusburg.org:30100/httpbin/
+  936  vi ambassador-service.yaml 
+  937  kubectl apply -f ambassador-service.yaml
+  938  curl https://portal.augustusburg.org:30100/httpbin/
+  939  vi ambassador-service.yaml 
+  940  kubectl apply -f ambassador-service.yaml
+  941  curl https://portal.augustusburg.org:30100/httpbin/
+  942  kubectl apply -f https://getambassador.io/yaml/ambassador/ambassador-rbac.yaml
+  943  curl https://portal.augustusburg.org:30100/httpbin/
+  944  reboot
+  945  curl https://portal.augustusburg.org:30100/httpbin/
+  946  vi ambassador-service.yaml 
+  947  kubectl apply -f ambassador-service.yaml
+  948  curl https://portal.augustusburg.org:30100/httpbin/
+  949  kubectl apply -f https://getambassador.io/yaml/ambassador/ambassador-rbac.yaml
+  950  curl https://portal.augustusburg.org:30100/httpbin/
+  951  vi ambassador-service.yaml 
+  952  ##geht irgendwie
+  953  vi ambassador-service.yaml 
+  954  # nochmal mit ohne redirekt 80>443 bzw, 30080>80100
+  955  kubectl apply -f ambassador-service.yaml
+  956  kubectl apply -f https://getambassador.io/yaml/ambassador/ambassador-rbac.yaml
+  957  curl http://portal.augustusburg.org:30080/httpbin/
+  958  vi ambassador-service.yaml 
+  959  kubectl apply -f ambassador-service.yaml
+  960  curl https://portal.augustusburg.org:30100/httpbin/
+  961  curl http://portal.augustusburg.org:30080/httpbin/
+  962  vi ambassador-service.yaml 
+  963  kubectl apply -f https://getambassador.io/yaml/ambassador/ambassador-rbac.yaml
+  964  curl http://portal.augustusburg.org:30080/httpbin/
+  965  curl https://portal.augustusburg.org:30100/httpbin/
+  966  reboot
+  967  curl https://portal.augustusburg.org:30100/httpbin/
+  968  curl http://portal.augustusburg.org:30080/httpbin/
+  969  vi ambassador-service.yaml 
+  970  curl http://portal.augustusburg.org:30080/httpbin/
+  971  curl http://portal.augustusburg.org:30080/httpsbin/
+  972  curl http://portal.augustusburg.org:30080/httpbin/
+  973  curl https://portal.augustusburg.org:30100/httpsbin/
+  974  vi ambassador-service.yaml 
+  975  kubectl apply -f ambassador-service.yaml
+  976  curl https://portal.augustusburg.org:30100/httpbin/
+  977  curl http://portal.augustusburg.org:30080/httpbin/
+  978  vi ambassador-service.yaml 
+  979  curl http://portal.augustusburg.org:30080/httpbin/
+  980  kubectl apply -f ambassador-service.yaml
+  981  curl http://portal.augustusburg.org:30080/httpbin/
+  982  curl https://portal.augustusburg.org:30100/httpbin/
+  983  curl http://portal.augustusburg.org:30080/httpbin/
+  984  vi ambassador-service.yaml 
+  985  kubectl apply -f ambassador-service.yaml
+  986  curl http://portal.augustusburg.org:30080/httpbin/
+  987  kubectl apply -f https://getambassador.io/yaml/ambassador/ambassador-rbac.yaml
+  988  curl http://portal.augustusburg.org:30080/httpbin/
+  989  vi ambassador-service.yaml 
+  990  kubectl apply -f ambassador-service.yaml
+  991  curl http://portal.augustusburg.org:30080/httpbin/
+  992  curl https://portal.augustusburg.org:30100/httpbin/
+  993  vi ambassador-service.yaml 
+  994  vi ambassadir-service-org.yaml 
+  995  kubectl apply -f ambassadir-service-org.yaml 
+  996  curl https://portal.augustusburg.org:30100/httpbin/
+  997  curl http://portal.augustusburg.org:30080/httpbin/
+  998  reboot
+  999  curl http://portal.augustusburg.org:30080/httpbin/
+ 1000  curl https://portal.augustusburg.org:30100/httpbin/
+ 1001  curl http://portal.augustusburg.org:30080/httpbin/
+ 1002  kubectl apply -f https://getambassador.io/yaml/ambassador/ambassador-rbac.yaml
+ 1003  curl http://portal.augustusburg.org:30080/httpbin/
+ 1004  vi ambassadir-service-org.yaml 
+ 1005  kubectl get pods
+ 1006  kubcectl delete pod ambassador-6867b6595b-dkj2k
+ 1007  kubectl delete pod ambassador-6867b6595b-dkj2k
+ 1008  kubectl delete pod ambassador-ambassador-6867b6595b-dlc6d
+ 1009  kubectl delete pod ambassador-ambassador-ambassador-6867b6595b-f5jdh
+ 1010  kubectl delete pod ambassador-6867b6595b-f5jdh
+ 1011  kubectl delete ambassador-6867b6595b-dlc6d
+ 1012  kubectl delete pod ambassador-6867b6595b-dlc6d
+ 1013  kubectl get pods
+ 1014  curl http://portal.augustusburg.org:30080/httpbin/
+ 1015  curl https://portal.augustusburg.org:30100/httpbin/
+ 1016  kubectl delete service ambassador
+ 1017  kubectl apply -f ambassadir-service-org.yaml 
+ 1018  cat ambassadir-service-org.yaml 
+ 1019  curl http://portal.augustusburg.org:30080/httpbin/
+ 1020  kubectl apply -f ambassador-service.yaml 
+ 1021  curl http://portal.augustusburg.org:30080/httpbin/
+ 1022  curl https://portal.augustusburg.org:30100/httpbin/
+ 1023  vi ambassador-service.yaml 
+ 1024  kubectl apply -f ambassador-service.yaml 
+ 1025  curl https://portal.augustusburg.org:30100/httpbin/
+ 1026  curl http://portal.augustusburg.org:30080/httpbin/
+ 1027  ### einmal httpos mit zertfikat aktiviert = kein weg zurück
+ 1028  ### höchstens zertifikat lsöschen???
+ 1029  vi ambassador-service.yaml 
+ 1030  ls
+ 1031  cat deployment-kubernetes-dashboard-insecuressl.yaml
+ 1032  ca deployment-kubernetes-dashboard-insecuressl.yaml
+ 1033  vi deployment-kubernetes-dashboard-insecuressl.yaml
+ 1034  cat deployment-kubernetes-dashboard-insecuressl.yaml| kubectl replace --force -f -
+ 1035  kubectl get pods
+ 1036  kubectl get pods --all-namespaces
+ 1037  ls
+ 1038  kubectl get services --all-namespaces
+ 1039  cat kubernetes-dashboard.yaml
+ 1040  q
+ 1041  ls
+ 1042  mv kubernetes-dashboard.yaml kubernetes-dashboard-nodeport.yaml
+ 1043  vi service-kubernetes-dashboard.yaml
+ 1044  cat service-kubernetes-dashboard.yaml | kubectl replace --force -f -
+ 1045  kubectl get services --all-namespaces
+ 1046  cat ambassador-service.yaml 
+ 1047  vi service-kubernetes-dashboard.yaml
+ 1048  cat service-kubernetes-dashboard.yaml | kubectl replace --force -f -
+ 1049  kubectl get services --all-namespaces
+ 1050  curl https://portal.augustusburg.org:30100/db/
+ 1051  vi service-kubernetes-dashboard.yaml
+ 1052  cat service-kubernetes-dashboard.yaml | kubectl replace --force -f -
+ 1053  vi service-kubernetes-dashboard.yaml
+ 1054  cat service-kubernetes-dashboard.yaml | kubectl replace --force -f -
+ 1055  kubectl get pods --all-namespaces
+ 1056  kubectl log pod kubernetes-dashboard-79f4d545d8-5vns4
+ 1057  kubectl logs pod kubernetes-dashboard-79f4d545d8-5vns4
+ 1058  kubectl logs kubernetes-dashboard-79f4d545d8-5vns4
+ 1059  kubectl logs pod kubernetes-dashboard-79f4d545d8-5vns4 -n kube-system
+ 1060  kubectl logs kubernetes-dashboard-79f4d545d8-5vns4 -n kube-system
+ 1061  ls
+ 1062  vi deployment-kubernetes-dashboard-insecuressl.yaml
+ 1063  kubectl describe kubernetes-dashboard-79f4d545d8-5vns4 -n kube-system
+ 1064  kubectl describe pod kubernetes-dashboard-79f4d545d8-5vns4 -n kube-system
+ 1065  kubectl get pods --all-namespaces
+ 1066  ### vorsicht - da sdb brauch etwas!
+ 1067  ### wenn es geht abe rnich nicht startet = leere seite unter url abe rkeien feherlemdlung
+ 1068  ls
+ 1069  vi service-kubernetes-dashboard.yaml
+ 1070  cat service-kubernetes-dashboard.yaml | kubectl replace --force -f -
+ 1071  vi service-kubernetes-dashboard.yaml
+ 1072  cp service-kubernetes-dashboard.yaml service-kubernetes-dashboard-unterverzeichnis.yaml
+ 1073  vi service-kubernetes-dashboard.yaml
+ 1074  cat service-kubernetes-dashboard.yaml | kubectl replace --force -f -
+ 1075  host db.augustusburg.org
+ 1076  host portal.augustusburg.org
+ 1077  cp service-kubernetes-dashboard.yaml service-kubernetes-dashboard-unterdomaene.yaml
+ 1078  cat service-kubernetes-dashboard-unterverzeichnis.yaml | kubectl replace --force -f -
+ 1079  vi service-kubernetes-dashboard-unterdomaene.yaml
+ 1080  cat service-kubernetes-dashboard-unterdomaene.yaml | kubectl replace --force -f -
+ 1081  history -a
+ 1082  history 
