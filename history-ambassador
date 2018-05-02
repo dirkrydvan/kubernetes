@@ -700,11 +700,75 @@ spec:
  1070  cat service-kubernetes-dashboard.yaml | kubectl replace --force -f -
  1071  vi service-kubernetes-dashboard.yaml
  1072  cp service-kubernetes-dashboard.yaml service-kubernetes-dashboard-unterverzeichnis.yaml
+ 
+ # ------------------- Dashboard Service ------------------- #
+
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard
+  namespace: kube-system
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  db_mapping
+      prefix: /db/
+      #host: portal.augustusburg.org:30100
+      service: kubernetes-dashboard.kube-system
+spec:
+  ports:
+    - name: db-http
+      port: 80
+      targetPort: 9090
+    - name: db-https
+      port: 443
+      targetPort: 9090
+  selector:
+    k8s-app: kubernetes-dashboard
+
+
+ 
+ 
  1073  vi service-kubernetes-dashboard.yaml
  1074  cat service-kubernetes-dashboard.yaml | kubectl replace --force -f -
  1075  host db.augustusburg.org
  1076  host portal.augustusburg.org
  1077  cp service-kubernetes-dashboard.yaml service-kubernetes-dashboard-unterdomaene.yaml
+ 
+ # ------------------- Dashboard Service ------------------- #
+
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: kubernetes-dashboard
+  name: kubernetes-dashboard
+  namespace: kube-system
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v0
+      kind:  Mapping
+      name:  db_mapping
+      prefix: /
+      host: portal.augustusburg.org:30100
+      service: kubernetes-dashboard.kube-system
+spec:
+  ports:
+    - name: db-http
+      port: 80
+      targetPort: 9090
+    - name: db-https
+      port: 443
+      targetPort: 9090
+  selector:
+    k8s-app: kubernetes-dashboard
+
+
  1078  cat service-kubernetes-dashboard-unterverzeichnis.yaml | kubectl replace --force -f -
  1079  vi service-kubernetes-dashboard-unterdomaene.yaml
  1080  cat service-kubernetes-dashboard-unterdomaene.yaml | kubectl replace --force -f -
