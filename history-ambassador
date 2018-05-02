@@ -690,6 +690,52 @@ spec:
  1060  kubectl logs kubernetes-dashboard-79f4d545d8-5vns4 -n kube-system
  1061  ls
  1062  vi deployment-kubernetes-dashboard-insecuressl.yaml
+ 
+ ---unvershclüsselten port 9090 zlassen wegens interner verarbeitung ambassador > dashboard
+ --- auto-gen-certificate aktivitr zwangsweisse 8443 verschlüsselung deshalb weg
+ ---- service konfig raus , damit das späte rangepasstw erdne kann mit ambassador -> saiehe unten
+ 
+ [root@portal ~]# diff deployment-kubernetes-dashboard-org.yaml deployment-kubernetes-dashboard-insecuressl.yaml
+119c119
+<         - containerPort: 8443
+---
+>         - containerPort: 9090
+122c122,124
+<           - --auto-generate-certificates
+---
+>           - --enable-insecure-login=true
+>           - --insecure-port=9090
+>           #- --auto-generate-certificates
+135c137
+<             scheme: HTTPS
+---
+>             scheme: HTTP
+137c139
+<             port: 8443
+---
+>             port: 9090
+153,167d154
+< # ------------------- Dashboard Service ------------------- #
+< 
+< kind: Service
+< apiVersion: v1
+< metadata:
+<   labels:
+<     k8s-app: kubernetes-dashboard
+<   name: kubernetes-dashboard
+<   namespace: kube-system
+< spec:
+<   ports:
+<     - port: 443
+<       targetPort: 8443
+<   selector:
+<     k8s-app: kubernetes-dashboard
+
+ 
+ 
+ 
+ 
+ 
  1063  kubectl describe kubernetes-dashboard-79f4d545d8-5vns4 -n kube-system
  1064  kubectl describe pod kubernetes-dashboard-79f4d545d8-5vns4 -n kube-system
  1065  kubectl get pods --all-namespaces
