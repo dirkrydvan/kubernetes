@@ -1,0 +1,176 @@
+    1  history 
+    2  ### sshd keepalive einrichten wegens nat und firewall timeout beim speedport
+    3  cp /etc/ssh/sshd_config /etc/ssh/sshd_config.20180426
+    4  vi /etc/ssh/sshd_config 
+    5  iff /etc/ssh/sshd_config /etc/ssh/sshd_config.20180426
+    6  #< ClientAliveInterval 300
+    7  #< ClientAliveCountMax 3
+    8  #> #ClientAliveInterval 0
+    9  #> #ClientAliveCountMax 3
+   10  systemctl restart sshd
+   11  ##fail2ban
+   12  yum -y install epel-release
+   13  yum -y install fail2ban
+   14  systemctl enable fail2ban
+   15  systemctl start fail2ban
+   16  systemctl status fail2ban
+   17  cat /var/log/fail2ban.log 
+   18  #### selinux prüfen und auf disabled stellen
+   19  cp /etc/sysconfig/selinux /etc/sysconfig/selinux.20180426
+   20  vi /etc/sysconfig/selinux
+   21  diff /etc/sysconfig/selinux /etc/sysconfig/selinux.20180426
+   22  #< SELINUX=disabled
+   23  #> SELINUX=enforcing
+   24  history -a
+   25  yum -y upgrade
+   26  sync
+   27  history 
+   28  setenforce 
+   29  getenforce 
+   30  poweroff 
+   31  history 
+   32  ### fail2ban config sshd
+   33  cp  /etc/fail2ban/jail.conf /etc/fail2ban/jail.conf.20180426
+   34  vi /etc/fail2ban/jail.conf
+   35  systemctl restart fail2ban
+   36  diff /etc/fail2ban/jail.conf /etc/fail2ban/jail.conf.20180426
+   37  getenforce 
+   38  sync
+   39  ps -ef
+   40  cat /var/log/fail2ban.log 
+   41  cat /var/log/messages 
+   42  top
+   43  ps -ef
+   44  df -h
+   45  exit
+   46  irewall-cmd --get-default-zone
+   47  firewall-cmd --get-default-zone
+   48  firewall-cmd --get-active-zones
+   49  irewall-cmd --list-all-zones
+   50  firewall-cmd --list-all-zones
+   51  firewall-cmd --get-services
+   52  ps -ef
+   53  ###asterisk
+   54  history -a
+   55  curl https://ast.tucny.com/repo/tucny-asterisk.repo > /etc/yum.repos.d/tucny-asterisk.repo
+   56  ## repo enabled udn key disablen
+   57  vi /etc/yum.repos.d/tucny-asterisk.repo
+   58  ## in repo 13 LTS
+   59  yum install asterisk
+   60  ##epel wie zuvor wird benötziogt
+   61  yum -y install asterisk
+   62  ps -ef
+   63  yum -y list| grep asterisk
+   64  yum -y install asterisk-mp3
+   65  yum -y list| grep asterisk
+   66  history -a
+   67  yum -y install asterisk-sip
+   68  yum -y list| grep asterisk
+   69  cd /etc/asterisk/
+   70  ls
+   71  pwd
+   72  cd
+   73  cp /etc/asterisk/extensions.conf /etc/asterisk/extensions.conf.org
+   74  cp /etc/asterisk/sip.conf /etc/asterisk/sip.conf.org
+   75  cat /etc/asterisk/sip_notify.conf 
+   76  cat /etc/asterisk/sip_notify.conf |mpre
+   77  cat /etc/asterisk/sip_notify.conf |more
+   78  ls
+   79  ls -al /etc/asterisk/
+   80  vi /etc/asterisk/extensions.conf
+   81  > /etc/asterisk/extensions.conf
+   82  vi /etc/asterisk/extension
+   83  > /etc/asterisk/sip.conf
+   84  vi /etc/asterisk/sip.conf
+   85  service asterisk restart
+   86  ps -ef
+   87  cat /var/log/messages 
+   88  asterisk -rvvvvvvvvv
+   89  firewall-cmd --state
+   90  firewall-cmd --list-zones
+   91  firewall-cmd --list-all-zones
+   92  firewall-cmd --zone=public --add-port=5060/udp --permanent
+   93  asterisk -rvvvvvvvvv
+   94  firewall-cmd --list-all-zones
+   95  firewall-cmd --list-zone=public
+   96  firewall-cmd --zone=public --list-all
+   97  firewall-cmd --zone=public --add-port=5060/udp --permanent
+   98  firewall-cmd --zone=public --list-all
+   99  firewall-cmd --zone=public --list-all-permanent
+  100  firewall-cmd --zone=public --list-all --permanent
+  101  firewall-cmd --relaod
+  102  firewall-cmd --reload
+  103  firewall-cmd --zone=public --list-all 
+  104  asterisk -rvvvvvvvvv
+  105  rpm -ql atserisk-mp3
+  106  rpm -ql asterisk-mp3
+  107  yum install mpg123
+  108  asterisk -rvvvvvvvvv
+  109  service asterisk restart
+  110  asterisk -rvvvvvvvvv
+  111  iptables -F
+  112  iptables -L
+  113  asterisk -rvvvvvvvvv
+  114  mp123
+  115  mpg123
+  116  vi /etc/asterisk/sip.conf
+  117  vi /etc/asterisk/extensions.conf
+  118  mpg123 http://avw.mdr.de/streams/284340-0_mp3_high.m3u
+  119  mpg123 @http://avw.mdr.de/streams/284340-0_mp3_high.m3u
+  120  mpg123 http://avw.mdr.de/streams/284340-0_mp3_high.m3u
+  121  asterisk -rvvvvvvvvv
+  122  yum list| grep asterisk
+  123  asterisk -rvvvvvvvvv
+  124  vi /etc/asterisk/extensions.conf
+  125  vi /etc/asterisk/musiconhold.conf 
+  126  vi /etc/yum.repos.d/tucny-asterisk.repo
+  127  yum -y upgrade
+  128  yum list| grep asterisk
+  129  yum install 
+  130  vi /etc/asterisk/extensions.conf
+  131  asterisk -rvvvvvvvvv
+  132  vi /etc/asterisk/modules.conf 
+  133  vi /etc/asterisk/asterisk.conf 
+  134  iptables -L
+  135  ps -ef
+  136  vi /etc/asterisk/sip.conf
+  137  service asteriusk restart
+  138  service asterisk restart
+  139  asterisk -rvvvvvvvvv
+  140  cat /var/log/messages 
+  141  asterisk -rvvvvvvvvv
+  142  rpm -qil asterisk
+  143  rpm -qil asterisk| grep app
+  144  rpm -qil asterisk| grep app | grep -i mp
+  145  asterisk -rvvvvvvvvv
+  146  vi /etc/asterisk/modules.conf 
+  147  rpm -qil asterisk| grep app | grep -i mp
+  148  rpm -qil asterisk| grep app 
+  149  vi /etc/asterisk/extensions.conf
+  150  service asterisk restart
+  151  asterisk -rvvvvvvvvv
+  152  lynx -source http://www.deutschlandradio.de/streaming/dlf.m3u | tail -1 > /tmp/hurra.mp3
+  153  curl http://www.deutschlandradio.de/streaming/dlf.m3u | tail -1 > /tmp/hurra.mp3
+  154  asterisk -rvvvvvvvvv
+  155  ls  /tmp/hurra.mp3
+  156  cat  /tmp/hurra.mp3
+  157  ls
+  158  ls /tmp/hurra.mp3
+  159  chmod 777 /tmp/hurra.mp3
+  160  asterisk -rvvvvvvvvv
+  161  curl https://archive.org/download/testmp3testfile/mpthreetest.mp3 > /tmp/hurra.mp3
+  162  chmod 777 /tmp/hurra.mp3
+  163  asterisk -rvvvvvvvvv
+  164  yum asterisk remove
+  165  yum remove asterisk 
+  166  vi /etc/yum.repos.d/tucny-asterisk.repo
+  167  yum install asterisk
+  168  rpm -qil asterisk| grep app
+  169  rpm -qil asterisk| grep app| grep mp
+  170  rpm -qil asterisk| grep mp
+  171  rpm -qil asterisk| grep mp3
+  172  yum install asterisk-mp3
+  173  rpm -qil asterisk-mp3
+  174  poweroff 
+  175  history 
+#### kein modul app_mpr im rpm!!!!
