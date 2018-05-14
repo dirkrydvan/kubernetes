@@ -1,0 +1,335 @@
+[root@host asterisk]# history 
+    1  history 
+    2  ### sshd keepalive einrichten wegens nat und firewall timeout beim speedport
+    3  cp /etc/ssh/sshd_config /etc/ssh/sshd_config.20180426
+    4  vi /etc/ssh/sshd_config 
+    5  iff /etc/ssh/sshd_config /etc/ssh/sshd_config.20180426
+    6  #< ClientAliveInterval 300
+    7  #< ClientAliveCountMax 3
+    8  #> #ClientAliveInterval 0
+    9  #> #ClientAliveCountMax 3
+   10  systemctl restart sshd
+   11  ##fail2ban
+   12  yum -y install epel-release
+   13  yum -y install fail2ban
+   14  systemctl enable fail2ban
+   15  systemctl start fail2ban
+   16  systemctl status fail2ban
+   17  cat /var/log/fail2ban.log 
+   18  #### selinux prüfen und auf disabled stellen
+   19  cp /etc/sysconfig/selinux /etc/sysconfig/selinux.20180426
+   20  vi /etc/sysconfig/selinux
+   21  diff /etc/sysconfig/selinux /etc/sysconfig/selinux.20180426
+   22  #< SELINUX=disabled
+   23  #> SELINUX=enforcing
+   24  history -a
+   25  yum -y upgrade
+   26  sync
+   27  history 
+   28  setenforce 
+   29  getenforce 
+   30  poweroff 
+   31  history 
+   32  ### fail2ban config sshd
+   33  cp  /etc/fail2ban/jail.conf /etc/fail2ban/jail.conf.20180426
+   34  vi /etc/fail2ban/jail.conf
+   35  systemctl restart fail2ban
+   36  diff /etc/fail2ban/jail.conf /etc/fail2ban/jail.conf.20180426
+   37  getenforce 
+   38  sync
+   39  ps -ef
+   40  cat /var/log/fail2ban.log 
+   41  cat /var/log/messages 
+   42  top
+   43  ps -ef
+   44  df -h
+   45  exit
+   46  irewall-cmd --get-default-zone
+   47  firewall-cmd --get-default-zone
+   48  firewall-cmd --get-active-zones
+   49  irewall-cmd --list-all-zones
+   50  firewall-cmd --list-all-zones
+   51  firewall-cmd --get-services
+   52  ps -ef
+   53  history 
+   54  ### asterisk
+   55  ls
+   56  mkdir asterisk
+   57  cd 
+   58  cd asterisk/
+   59  wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-13.21.0.tar.gz
+   60  yum -y install wget
+   61  wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-13.21.0.tar.gz
+   62  wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-13.21.0-patch.tar.gz
+   63  ls
+6  tar xvfz asterisk-13.21.0.tar.gz 
+   67  ls
+   68  tar tvfz asterisk-13.21.0-patch.tar.gz 
+   69  cd asterisk-13.21.0
+   70  ls
+   71  tar xvfz ../asterisk-13.21.0-patch.tar.gz 
+   72  mkdir /appl/asterisk
+   73  mkdir -p /appl/asterisk
+   74  mkdir -p /appl/asterisk/etc/rc.d/init.d/
+   75  mkdir -p /appl/asterisk/etc/sysconfig/
+   77  yum -y install gcc
+   79  yum -y install g++
+   80  yum -y install gcc-c++
+   82  yum -y install ncurses-devel
+   84  yum install uuid-devel
+   86  vi /etc/sestatus.conf 
+   87  history 
+   88  yum install -y epel-release dmidecode gcc-c++ ncurses-devel libxml2-devel make wget openssl-devel newt-devel kernel-devel sqlite-devel libuuid-devel gtk2-devel jansson-devel binutils-devel
+   89  history 
+   90  history -a
+   91  make menuconfig
+   92  make menuconfig 
+   100  yum -y install bzip2
+  102  yum install patch
+  104  yum install sqlite-devel
+  105  yum install sqlite
+  106  ./configure --prefix=/appl/asterisk --without-bluetooth --without-curses --without-dahdi --without-gtk2 --without-h323 --without-ical --without-iksemel --without-imap --without-inotify --without-iodbc --without-isdnnet --without-ldap --without-lua --without-misdn --without-mysqlclient --without-neon --without-neon29 --without-netsnmp -without-newt --without-openais --without-openr2 --without-osptk --without-postgres --without-popt --without-pri --without-radius --without-ss7 --without-sqlite --without-sqlite3 --without-suppserv --without-tds --without-tonezone --without-unixodbc --without-vpb --without-x11 --with-pjproject-bundled
+  107  ./configure --prefix=/appl/asterisk --without-bluetooth --without-curses --without-dahdi --without-gtk2 --without-h323 --without-ical --without-iksemel --without-imap --without-inotify --without-iodbc --without-isdnnet --without-ldap --without-lua --without-misdn --without-mysqlclient --without-neon --without-neon29 --without-netsnmp -without-newt --without-openais --without-openr2 --without-osptk --without-postgres --without-popt --without-pri --without-radius --without-ss7 --without-suppserv --without-tds --without-tonezone --without-unixodbc --without-vpb --without-x11 --with-pjproject-bundled
+  108  ### ok configzure ging
+  109  patch 
+  110  patch asterisk-13.21.0-patch 
+  111  patch -p1 < asterisk-13.21.0-patch
+  112  vi asterisk-13.21.0-patch 
+  113  ls
+  114  ###patch überflüsig
+  115  make menuconfig
+  116  ##### set callerid enabled
+  117  ##### steramplayr enapbled
+  118  ls
+  119  cp apps/app_mp3.c apps/app_mp3.c.org
+  120  vi apps/app_mp3.c
+  121  ### scheinbar is da wa smit sreamformat verbessert worden
+  122  cd
+  123  cd asterisk/
+  124  ls
+  125  cd asterisk-13.21.0
+  126  make
+  129  yum install svn
+  130  contrib/scripts/get_mp3_source.sh
+  131  make install
+  132  make basic-pbx 
+  133  make samples
+  134  make clean
+  135  cd /appl/asterisk/phoneprov/
+  136  cd /appl/asterisk/
+  137  ls
+  138  cd include/
+  139  ls
+  140  ls asterisk
+  141  pwd
+  142  cd ..
+  143  ls
+  144  cd sbin/
+  145  ls
+  146  ./streamplayer 
+  147  ls
+  148  cd ..
+  149  ls
+  150  cd etc/
+  151  ls
+  152  cd asterisk/
+  153  ls
+  154  vi asterisk.conf
+  155  vi sip.conf 
+  156  diff asterisk.conf         asterisk.conf.old   
+  157  cat /etc/passwd
+  158  ls
+  159  diff asterisk.conf         asterisk.conf.old   
+  160  ls
+  161  cat asterisk.conf.old 
+  162  ls *.old
+  163  cat musiconhold.conf.old
+  164  cat pjsip.conf.old
+  165  ls
+  166  cd ..
+  167  ls
+  168  cd ..
+  169  ls
+  170  ls share/
+  171  ls share/man/
+  172  ls include/asterisk/
+  173  ls include/asterisk/doxygen/
+  174  cat var/lib/asterisk/phoneprov/000000000000-phone.cfg
+  175  cat var/lib/asterisk/phoneprov/000000000000-directory.xml 
+  176  cat var/lib/asterisk/phoneprov/000000000000.cfg 
+  177  cat var/lib/asterisk/phoneprov/polycom_line.xml 
+  178  cat var/lib/asterisk/phoneprov/snom-mac.xml 
+  179  ls
+  180  cd etc/
+  181  ls
+  182  cd asterisk/
+  183  ls
+  184  vi README 
+  185  ls
+  186  mkdir vorlagen
+  187  pwd
+  188  mv * vorlagen/
+  189  ls
+  190  cp vorlagen/*.old .
+  191  ls
+  192  vi vorlagen/sip.conf 
+  193  ls
+  194  cat logger.conf.old 
+  195  cat modules.conf.old 
+  196  q
+  197  ls
+  198  vi vorlagen/modules.conf
+  199  cat indications.conf.old 
+  200  cat vorlagen/indications.conf
+  201  ls
+  202  cat cdr
+  203  cat cdr.conf.old 
+  204  cat cdr_custom.conf.old 
+  205  cat extensions.conf.old 
+  206  ls
+  207  cat pjsip.conf.old 
+  208  cat queues.conf.old 
+  209  ls
+  210  cat indications.conf.old 
+  211  cat confbridge.conf.old 
+  212  cat voicemail.conf.old 
+  213  ls
+  214  cd
+  215  history -a
+  216  poweroff 
+  217  ps -ef
+  218  history 
+  219  +
+  220  ps -ef
+  221  service asterisk start
+  222  ls /appl/asterisk/etc/rc.d/
+  223  ls /appl/asterisk/etc/rc.d/init.d/
+  224  ls /appl/asterisk/etc/asterisk/mkdir vorlagen-mini
+  225  cd /appl/asterisk/etc/asterisk/
+  226  mkdir vorlagen-mini
+  227  mv *.old vorlagen-mini/
+  228  ls
+  229  cd ..
+  230  ls
+  231  sl sysconfig/
+  232  ls sysconfig/
+  233  ls rc.d/init.d/
+  234  cd /appl/asterisk/
+  235  ls
+  236  ls lib/
+  237  ls lib/asterisk/
+  238  ls lib/asterisk/modules/
+  239  ls
+  240  ls include/
+  241  ls include/asterisk
+  242  history 
+  243  /appl/asterisk/sbin/asterisk 
+  244  ps -ef
+  245  /appl/asterisk/sbin/asterisk -rvvv
+  246  ps -ef
+  247  /appl/asterisk/sbin/asterisk -rvvv
+  248  ls
+  249  cd
+  250  ls
+  251  ls asterisk/
+  252  tar xvfz asterisk-13-21-0-compiliert.tar.gz /appl/asterisk/
+  253  tar cvfz asterisk-13-21-0-compiliert.tar.gz /appl/asterisk/
+  254  ls -lh
+  255  ls .al /appl/
+  256  ls .al /appl/asterisk/
+  257  cd asterisk
+  258  ls
+  259  cd asterisk-13.21.0
+  260  ls
+  261  make config
+  262  service asterisk start
+  263  service asterisk stop
+  264  systemctl status asterisk
+  265  cat /etc/rc.d/init.d/asterisk
+  266  service asterisk start
+  267  ps -ef
+  268  reboot
+  269  ps -ef
+  270  cd /appl/asterisk/etc/
+  271  ls
+  272  ps -ef
+  273  cat /var/log/messages 
+  274  date
+  275  ntpq -p
+  276  cat /var/log/messages 
+  277  cat /appl/asterisk/var/log/asterisk/queue_log 
+  278  cat /appl/asterisk/var/log/asterisk/*
+  279  cat /appl/asterisk/var/log/asterisk/*/*
+  280  pwd
+  281  ls
+  282  cd asterisk/
+  283  ls
+  284  cat /etc/sysconfig/asterisk 
+  285  ps -ef
+  286  ls
+  287  ps
+  288  firewall-cmd
+  289  firewall-cmd status
+  290  firewall-cmd state
+  291  history | grep fire
+  292  firewall-cmd --get-default-zone
+  293  firewall-cmd --list-all-zones
+  294  firewall-cmd --list-all
+  295  firewall-cmd --list-all --permanent
+  296  firewall-cmd --zone=public --add-port=5060/udp --permanent
+  297  firewall-cmd --zone=public --add-port=5060/tcp --permanent
+  298  firewall-cmd --zone=public --add-port=5061/udp --permanent
+  299  firewall-cmd --zone=public --add-port=5061/tcp --permanent
+  300  firewall-cmd --zone=public --add-port=10000-20000/udp --permanent
+  301  ##media gw prot
+  302  firewall-cmd --zone=public --add-port=2727/udp --permanent
+  303  firewall-cmd --list-all
+  304  firewall-cmd --list-all --permanent
+  305  firewall-cmd --relaod
+  306  firewall-cmd --reload
+  307  firewall-cmd --list-all 
+  308  ##end efw
+  309  ps -ef
+  310  pwd
+  311  cd
+  312  ls
+  315  scp w:./setup/asterisk-1.8.13.0-centos5-sicherung.tar.gz .
+  316  ls
+  317  mkdir tmp
+  318  cd tmp/
+  319  tar xvfz ../asterisk-1.8.13.0-centos5-sicherung.tar.gz 
+  320  ls
+  321  ls etc/
+  322  cd /appl/asterisk/
+  323  ls
+  324  cd etc/
+  325  ls
+  326  cd asterisk/
+  327  ls
+  328  cp /root/tmp/appl/asterisk/etc/asterisk/asterisk.conf .
+  329  cp /root/tmp/appl/asterisk/etc/asterisk/cdr.conf .
+  330  cp /root/tmp/appl/asterisk/etc/asterisk/extensions.conf .
+  331  cp /root/tmp/appl/asterisk/etc/asterisk/logger.conf .
+  332  cp /root/tmp/appl/asterisk/etc/asterisk/modules.conf .
+  333  cp /root/tmp/appl/asterisk/etc/asterisk/musiconhold.conf .
+  334  cp /root/tmp/appl/asterisk/etc/asterisk/queuerules.conf .
+  335  cp /root/tmp/appl/asterisk/etc/asterisk/queues.conf .
+  336  cp /root/tmp/appl/asterisk/etc/asterisk/sip.conf .
+  337  service asterisk restart
+  338  cat /appl/asterisk/var/log/asterisk/
+  339  cat /appl/asterisk/var/log/asterisk/queue_log 
+  340  cat /appl/asterisk/var/log/asterisk/messages 
+  341  /appl/asterisk/sbin/asterisk -rvvvvv
+  342  lynx -source http://www.deutschlandradio.de/streaming/dlf.m3u | tail -1 > /tmp/dlf.m3u
+  343  curl http://www.deutschlandradio.de/streaming/dlf.m3u | tail -1 > /tmp/dlf.m3u
+  344  cat /tmp/dlf.m3u 
+  345  curl http://www.deutschlandradio.de/streaming/dkultur.m3u | tail -1 > /tmp/dkultur.m3u
+  346  /appl/asterisk/sbin/asterisk -rvvvvv
+  347  yum -y install mpg123
+  348  ls
+  349  /appl/asterisk/sbin/asterisk -rvvvvv
+  350  cat /appl/asterisk/var/log/asterisk/messages 
+  351  ls
+  352  cat modules.conf 
+  353  /appl/asterisk/sbin/asterisk -rvvvvv
+  354  history -a
