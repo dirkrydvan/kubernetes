@@ -47,6 +47,7 @@
   263  cd asterisk-13.21.1
   265  make
   266  make install
+  /sbin/ldconfig
   
 
    41  ## quelle holen
