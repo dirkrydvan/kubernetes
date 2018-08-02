@@ -100,3 +100,16 @@
   156  find / -name asterisk.conf
   157  make basic-pbx 
   
+  ### system start
+  cp contrib/init.d/rc.redhat.asterisk /etc/init.d/asterisk
+  # Eintragung Pfad für konfig = /appl/asterisk/etc/asterisk
+  # Eintragung Pfad für sbin = /appl/asterisk/sbin
+  vi /etc/init.d/asterisk
+  systemctl daemon-reload
+  175  systemctl enable asterisk
+  176  service asterisk start
+  /appl/asterisk/sbin/asterisk -rvvvvvvv
+  modules show
+  pjsip list endpoints
+  pjsip list contacts
+
