@@ -1,0 +1,102 @@
+    ### Tastatur und upgrade
+    3  localectl 
+    5  localectl --help
+    6  localectl set-keymap de
+    7  localectl status
+    8  ps -ef
+    9  yum upgrade
+   10  ps -ef
+   11  df -h
+   12  sync
+  116  ### speicherplatz - das solte schon anfangs gemacht werden
+  117  /usr/bin/rootfs-expand
+  118  history -a
+  119  df -h
+   ### einrichtung statische ip und hostname
+   13  ethtool eth0
+   14  ethtool 
+   15  ifconfig
+   16  vi /etc/sysconfig/network-scripts/
+   17  df -h
+   23  top
+   24  ps -ef
+   26  ifconfig
+   29  nmtui
+   30  ps -ef
+   31  ifconfig
+   42  systemctl status network
+   43  nmtui
+   47  systemctl restart network
+   48  journalctl -xe
+   49  ifconfig 
+   66  nmcli
+   67  reboot
+   68  ps -ef
+   69  top
+   ### manuele einrichtung epel wegen quellen udn fail2ban
+   70  cat > /etc/yum.repos.d/epel.repo << EOF
+   71  [epel]
+   72  name=Epel rebuild for armhfp
+   73  baseurl=https://armv7.dev.centos.org/repodir/epel-pass-1/
+   74  enabled=1
+   75  gpgcheck=0
+   76  EOF
+   77  history -a
+   78  yum install fail2ban
+   #### unter [ssh] muss "enabled = yes" hinzugefügt werden 
+   79  cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.conf.20180802
+   80  vi /etc/fail2ban/jail.conf
+   81  systemctl enable fail2ban
+   82  systemctl restart fail2ban
+   83  systemctl status fail2ban
+   87  cat /var/log/secure 
+   88  yum -y install fail2ban
+   94  systemctl restart fail2ban
+   95  systemctl status fail2ban
+   96  cat /var/log/messages 
+   98  iptables -L
+   99  cat /var/log/fail2ban.log 
+  ### root pw
+  101  passwd
+  
+  
+  107  ## voerbereitung asterisk
+  108  cp /etc/selinux/config /etc/selinux/config.20180802
+  109  vi /etc/selinux/config
+  110  yum -y update
+  111  reboot
+  114  ### installation pakete zum bauen asterisk
+  120  yum install -y epel-release dmidecode gcc-c++ ncurses-devel libxml2-devel make wget openssl-devel newt-devel kernel-devel sqlite-devel libuuid-devel gtk2-devel jansson-devel binutils-devel
+  121  vi installation-comp-umgebung.txt
+  122  ### nur für mp3 quellen
+  123  yum install svn
+  124  vi installation-comp-umgebung.txt
+  ### nur für pjsip compilierung
+  135  yum -y install bzip2 patch
+  126  wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-13.21.1.tar.gz
+  127  wget http://downloads.asterisk.org/pub/telephony/asterisk//old-releases/asterisk-13.21.1.tar.gz
+  130  tar xvfz asterisk-13.21.1.tar.gz 
+  131  cd asterisk-13.21.1
+  138  ./configure --prefix=/appl/asterisk --without-bluetooth --without-curses --without-dahdi --without-gtk2 --without-ical --without-iksemel --without-imap --without-inotify --without-iodbc --without-isdnnet --without-ldap --without-lua --without-misdn --without-mysqlclient --without-neon --without-neon29 --without-netsnmp -without-newt --without-openr2 --without-osptk --without-postgres --without-popt --without-pri --without-radius --without-ss7 --without-suppserv --without-tds --without-tonezone --without-unixodbc --without-vpb --without-x11 --with-pjproject-bundled
+  ### hinzufügen mp3 format und streaming
+  139  make menuconfig
+  140  make
+  141  contrib/scripts/get_mp3_source.sh 
+  142  make
+  143  mkdir -p /appl/asterisk
+  145  make install
+  
+  ### nur konfig beispiel dateien
+  146  make basic-pbx 
+  147  mkdir /appl/asterisk/etc/asterisk/basic-pbx
+  148  mv /appl/asterisk/etc/asterisk/* /appl/asterisk/etc/asterisk/basic-pbx
+  149  ls /appl/asterisk/etc/asterisk/
+  150  make samples
+  151  mkdir /appl/asterisk/etc/asterisk/beispiel
+  152  mv /appl/asterisk/etc/asterisk/* /appl/asterisk/etc/asterisk/beispiel
+  153  mv /appl/asterisk/etc/asterisk/beispiel/basic-pbx/ /appl/asterisk/etc/asterisk/
+  154  ls -al /appl/asterisk/etc/asterisk/beispiel/
+  155  ls -al /appl/asterisk/etc/asterisk/basic-pbx/
+  156  find / -name asterisk.conf
+  157  make basic-pbx 
+  
