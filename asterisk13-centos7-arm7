@@ -76,8 +76,13 @@
 < password=land-erzgebirge                        \
 < land-erzgebirge.eu
 
-
-  
+  376  systemctl enable ddclient.service
+  ### (wenn ddclient schon mal lief, cache löschen! (test...)
+  378  rm -rf /var/cache/ddclient/ddclient.cache
+  379  systemctl restart ddclient
+  380  systemctl status ddclient
+  ### test 
+  ddclient -daemon=0 -debug -verbose -noquiet  
   
   107  ## voerbereitung asterisk
   108  cp /etc/selinux/config /etc/selinux/config.20180802
