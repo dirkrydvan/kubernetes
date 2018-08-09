@@ -4,7 +4,7 @@
 ; bei dem eigenen DSL-Anschluss ist der benutzername udn das Passwort egal
 
 
-; transport konfiguration für eine Asterisk Anlag hinter einem Speedport Router
+; transport konfiguration für eine Asterisk Anlage hinter einem Speedport Router
 ; typisches lokales Netzwerk ist 192.168.2.0/24
 
 [transport-udp-nat]
