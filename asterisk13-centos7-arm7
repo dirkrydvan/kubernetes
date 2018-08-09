@@ -87,6 +87,24 @@
   ### mail daktivieren
   systemctl disable postfix
   
+  ### root deaktivieren
+  401  useradd xyz
+  402  passwd xyz
+  403  cat /etc/sudoers
+  404  usermod -aG wheel xyz
+  407  cp /etc/ssh/sshd_config /etc/ssh/sshd_config.20180809
+  408  vi /etc/ssh/sshd_config
+  # diff /etc/ssh/sshd_config /etc/ssh/sshd_config.20180809
+39d38
+< PermitRootLogin no
+109d107
+< TCPKeepAlive yes
+115d112
+< ClientAliveInterval 300
+
+  
+
+  
   107  ## voerbereitung asterisk
   108  cp /etc/selinux/config /etc/selinux/config.20180802
   109  vi /etc/selinux/config
