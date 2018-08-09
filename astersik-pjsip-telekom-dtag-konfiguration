@@ -1,0 +1,55 @@
+;=======================
+; telekom augustusburg Beispiel Telefonnummer +49 37291 44444 bzw. 037291/44444
+; Referenzkonfiguration mit Funktion auch von anderen Telekom-DSL-Anschlüssen als der lokale eigene Anschluss
+; bei dem eigenen DSL-Anschluss ist der benutzername udn das Passwort egal
+
+[telekom-augustusburg-trunk]
+type = registration
+outbound_auth = telekom-augustusburg-auth
+server_uri = sip:tel.t-online.de:5060
+client_uri = sip:+493729144444@tel.t-online.de:5060
+retry_interval = 60
+; zusätzlich
+transport = transport-udp-nat
+contact_user = 03729144444
+retry_interval = 60
+forbidden_retry_interval = 60
+expiration = 480
+auth_rejection_permanent = false
+
+; Endpoint for telekom-augustusburg account
+
+[telekom-augustusburg-endpoint]
+type=endpoint
+context = telekom-augustusburg-Incoming
+allow = !all,g722,alaw
+outbound_auth = telekom-augustusburg-auth
+aors = telekom-augustusburg-aor
+direct_media = no
+from_domain = tel.t-online.de
+; zusätzlich
+timers = no
+rtp_symmetric = yes
+force_rport = yes
+ice_support = yes
+rewrite_contact = yes
+callerid = Amt44444 Augustusburg
+
+[telekom-augustusburg-auth]
+type = auth
+auth_type = userpass
+; wenn keine T-Online Adresse aktiviert wurde, dann ist der Benutzername T-Onlinenummer@t-online.de
+;username = 551113333777@t-online.de
+;password = 63468512
+username = augustusburg@t-online.de
+password = passwordgeheim
+realm = tel.t-online.de
+
+[telekom-augustusburg-aor]
+type = aor
+contact = sip:+493729144444@tel.t-online.de
+
+[telekom-augustusburg-identify]
+type=identify
+endpoint = telekom-augustusburg-endpoint
+match = 217.0.0.0/13
