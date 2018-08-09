@@ -84,6 +84,9 @@
   ### test 
   ddclient -daemon=0 -debug -verbose -noquiet  
   
+  ### mail daktivieren
+  systemctl disable postfix
+  
   107  ## voerbereitung asterisk
   108  cp /etc/selinux/config /etc/selinux/config.20180802
   109  vi /etc/selinux/config
