@@ -54,6 +54,7 @@ callerid = Amt44444 Augustusburg
 type = auth
 auth_type = userpass
 ; wenn keine T-Online Adresse aktiviert wurde, dann ist der Benutzername T-Onlinenummer@t-online.de
+; die T-Onlinenummer ist nicht(!) die Nummer mit zwei führendne Nullen ähnlich 00234125637
 ;username = 551113333777@t-online.de
 ;password = 63468512
 username = augustusburg@t-online.de
