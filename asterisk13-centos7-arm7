@@ -33,7 +33,7 @@
    67  reboot
    68  ps -ef
    69  top
-   ### manuele einrichtung epel wegen quellen udn fail2ban
+   ### manuele einrichtung epel wegen quellen und fail2ban/ddclient
    70  cat > /etc/yum.repos.d/epel.repo << EOF
    71  [epel]
    72  name=Epel rebuild for armhfp
@@ -58,6 +58,25 @@
    99  cat /var/log/fail2ban.log 
   ### root pw
   101  passwd
+  
+  ### dyndns strato
+  338  yum -y install ddclient
+  340  cp  /etc/ddclient.conf /etc/ddclient.conf.20180809
+  341  vi  /etc/ddclient.conf
+  # diff /etc/ddclient.conf /etc/ddclient.conf.20180809 
+217,226d216
+< 
+< ##
+< ## Strato
+< ##
+< use=web
+< server=dyndns.strato.com/nic/update             \
+< protocol=dyndns2                                \
+< login=land-erzgebirge.eu                        \
+< password=land-erzgebirge                        \
+< land-erzgebirge.eu
+
+
   
   
   107  ## voerbereitung asterisk
