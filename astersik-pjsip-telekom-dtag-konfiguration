@@ -3,6 +3,21 @@
 ; Referenzkonfiguration mit Funktion auch von anderen Telekom-DSL-Anschlüssen als der lokale eigene Anschluss
 ; bei dem eigenen DSL-Anschluss ist der benutzername udn das Passwort egal
 
+
+; transport konfiguration für eine Asterisk Anlag hinter einem Speedport Router
+; typisches lokales Netzwerk ist 192.168.2.0/24
+
+[transport-udp-nat]
+type = transport
+protocol = udp
+bind = 0.0.0.0
+; NAT settings
+;local_net = 10.0.0.0/8
+local_net = 192.168.2.0/24
+
+
+; Anschlusskonfiguration für eine Telefonnummer/MSN
+
 [telekom-augustusburg-trunk]
 type = registration
 outbound_auth = telekom-augustusburg-auth
