@@ -1,0 +1,9 @@
+Netzwerk der Anwendung im Pod tracen/prüfen ohne Root-Rechte in Openshift:
+
+notebook# oc port-forward <podname> 8000:8000
+
+notebook# ssh root@internetvserver -g -R *:8000:localhost:8000
+
+(Konfig auf internetvserver)
+/etc/ssh/sshd_config
+GatewayPorts yes
