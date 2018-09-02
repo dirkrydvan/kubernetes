@@ -1,0 +1,91 @@
+### Anlage1+2
+## modules.conf
+autoload=yes
+oder
+res_pjsip_publish_asterisk, res_pjsip_outbound_publish, ? .... laden
+
+### Anlage 1 (Internetserver)
+## asterisk.conf
+entityid=00:11:22:33:44:56 ; Entity ID. This is currently is Exchanging Device and Mailbox State using protocols: XMPP, Corosync and PJSIP
+
+## pjsip.conf
+
+[instance2]
+type=endpoint
+;nat??
+timers = no
+rtp_symmetric = yes
+force_rport = yes
+ice_support = yes
+rewrite_contact = yes
+
+; portumleunkung 5070-5060 auf raspi hinter speedport
+[instance2-devicestate]
+type=outbound-publish
+server_uri=sip:instance1@raspi-tmp-ip-dsl:5070
+event=asterisk-devicestate
+;event=dialog
+
+[instance2-mwi]
+type=outbound-publish
+server_uri=sip:instance1@raspi-tmp-ip-dsl:5070
+event=asterisk-mwi
+
+[instance2]
+type=inbound-publication
+event_asterisk-devicestate=instance2
+event_asterisk-mwi=instance2
+
+[instance2]
+type=asterisk-publication
+devicestate_publish=instance2-devicestate
+mailboxstate_publish=instance2-mwi
+device_state=yes
+mailbox_state=yes
+
+### Anlage 2 (Rspi tmp-IP-dsl hinter speedport)
+## asterisk.conf
+entityid=00:11:22:33:44:56 ; Entity ID. This is currently is Exchanging Device and Mailbox State using protocols: XMPP, Corosync and PJSIP
+
+## Portumlenkung 5070->5060 auf speedport nicht vergessen!
+
+## pjsip.conf
+
+[instance1]
+type=endpoint
+;nat?
+;timers = no
+;rtp_symmetric = yes
+;force_rport = yes
+;ice_support = yes
+;rewrite_contact = yes
+transport=transport-udp-nat
+media_use_received_transport=yes
+trust_id_inbound=yes
+media_encryption=no
+rtp_symmetric=yes
+rewrite_contact=yes
+force_rport=yes
+
+[instance1-devicestate]
+type=outbound-publish
+server_uri=sip:instance2@serverip-anlage1
+event=asterisk-devicestate
+;event=dialog
+
+[instance1-mwi]
+type=outbound-publish
+server_uri=sip:instance2@server-ip-anlage1
+event=asterisk-mwi
+
+[instance1]
+type=inbound-publication
+event_asterisk-devicestate=instance1
+event_asterisk-mwi=instance1
+
+[instance1]
+type=asterisk-publication
+devicestate_publish=instance1-devicestate
+mailboxstate_publish=instance1-mwi
+device_state=yes
+mailbox_state=yes
