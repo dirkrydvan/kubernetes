@@ -49,3 +49,32 @@ ECS-WINDOWS-BI	HTTP Redirection	Role Service	Web Server (IIS)\Web Server\Common 
 ECS-WINDOWS-BI	Request Filtering	Role Service	Web Server (IIS)\Web Server\Security\Request Filtering
 
 
+
++ Zertifikat
+oc -n namespace get routes
+oc -n namespace export route xyz > wildcard.xyz
+vi wildcard.xyz -> nur noch Zertifikatsinfos
+
+-----BEGIN CERTIFICATE-----
+xxx-cert
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+xxx-certca-intermed
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+xxx-certca
+-----END CERTIFICATE-----
+-----BEGIN RSA PRIVATE KEY-----
+xxx-key
+-----END RSA PRIVATE KEY-----
+
+# openssl pkcs12 -in wildcard.xyz -out wildcard.xyz.pfx -export
+
+-> Start> Windows Administrative Tools> Internet Information Services (IIS) Manager
+IIS-Mgn> Server Certificates> Import (wildcard.xyz.pfx)
+IIS-Mgn> Sites> Defaultr Web Site> (Edit Site rehcts) Binding --> Zertifikat auswählen start myrtille self signet
+IIS-MGn> Stop Start IIS
+
+-> Seite neu öffnen (neu laden behält self signet Zertiufikat)
+
+
