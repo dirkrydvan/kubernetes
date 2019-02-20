@@ -11,3 +11,40 @@
 - reboot
 -> geht noch
 
+
++ Rolle Webserver IIS> Web Server> Application development> Websocket
+
+-> Rolen und Leistungsmerkmale IIS mit dem noch installierten Webacces
+ECS-WINDOWS-BI	Web Server (IIS)	Role	Web Server (IIS)
+ECS-WINDOWS-BI	Windows Authentication	Role Service	Web Server (IIS)\Web Server\Security\Windows Authentication
+ECS-WINDOWS-BI	Basic Authentication	Role Service	Web Server (IIS)\Web Server\Security\Basic Authentication
+ECS-WINDOWS-BI	Security	Role Service	Web Server (IIS)\Web Server\Security
+ECS-WINDOWS-BI	Tracing	Role Service	Web Server (IIS)\Web Server\Health and Diagnostics\Tracing
+ECS-WINDOWS-BI	Request Monitor	Role Service	Web Server (IIS)\Web Server\Health and Diagnostics\Request Monitor
+ECS-WINDOWS-BI	Logging Tools	Role Service	Web Server (IIS)\Web Server\Health and Diagnostics\Logging Tools
+ECS-WINDOWS-BI	HTTP Logging	Role Service	Web Server (IIS)\Web Server\Health and Diagnostics\HTTP Logging
+ECS-WINDOWS-BI	Health and Diagnostics	Role Service	Web Server (IIS)\Web Server\Health and Diagnostics
+ECS-WINDOWS-BI	ISAPI Filters	Role Service	Web Server (IIS)\Web Server\Application Development\ISAPI Filters
+ECS-WINDOWS-BI	ISAPI Extensions	Role Service	Web Server (IIS)\Web Server\Application Development\ISAPI Extensions
+ECS-WINDOWS-BI	WebSocket Protocol	Role Service	Web Server (IIS)\Web Server\Application Development\WebSocket Protocol
+ECS-WINDOWS-BI	.NET Extensibility 4.6	Role Service	Web Server (IIS)\Web Server\Application Development\.NET Extensibility 4.6
+ECS-WINDOWS-BI	ASP.NET 4.6	Role Service	Web Server (IIS)\Web Server\Application Development\ASP.NET 4.6
+ECS-WINDOWS-BI	Client Certificate Mapping Authentication	Role Service	Web Server (IIS)\Web Server\Security\Client Certificate Mapping Authentication
+ECS-WINDOWS-BI	Application Development	Role Service	Web Server (IIS)\Web Server\Application Development
+ECS-WINDOWS-BI	HTTP Errors	Role Service	Web Server (IIS)\Web Server\Common HTTP Features\HTTP Errors
+ECS-WINDOWS-BI	Directory Browsing	Role Service	Web Server (IIS)\Web Server\Common HTTP Features\Directory Browsing
+ECS-WINDOWS-BI	Default Document	Role Service	Web Server (IIS)\Web Server\Common HTTP Features\Default Document
+ECS-WINDOWS-BI	Static Content	Role Service	Web Server (IIS)\Web Server\Common HTTP Features\Static Content
+ECS-WINDOWS-BI	Common HTTP Features	Role Service	Web Server (IIS)\Web Server\Common HTTP Features
+ECS-WINDOWS-BI	Static Content Compression	Role Service	Web Server (IIS)\Web Server\Performance\Static Content Compression
+ECS-WINDOWS-BI	Performance	Role Service	Web Server (IIS)\Web Server\Performance
+ECS-WINDOWS-BI	Web Server	Role Service	Web Server (IIS)\Web Server
+ECS-WINDOWS-BI	IIS 6 Metabase Compatibility	Role Service	Web Server (IIS)\Management Tools\IIS 6 Management Compatibility\IIS 6 Metabase Compatibility
+ECS-WINDOWS-BI	IIS 6 Management Compatibility	Role Service	Web Server (IIS)\Management Tools\IIS 6 Management Compatibility
+ECS-WINDOWS-BI	IIS Management Scripts and Tools	Role Service	Web Server (IIS)\Management Tools\IIS Management Scripts and Tools
+ECS-WINDOWS-BI	IIS Management Console	Role Service	Web Server (IIS)\Management Tools\IIS Management Console
+ECS-WINDOWS-BI	Management Tools	Role Service	Web Server (IIS)\Management Tools
+ECS-WINDOWS-BI	HTTP Redirection	Role Service	Web Server (IIS)\Web Server\Common HTTP Features\HTTP Redirection
+ECS-WINDOWS-BI	Request Filtering	Role Service	Web Server (IIS)\Web Server\Security\Request Filtering
+
+
