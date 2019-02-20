@@ -1,6 +1,7 @@
 - windows srv 2016 installation, administrator/adminpw
 - Benutzer anlegen, Remote Desktop User Gruppe, Administrator Gruppe
 - administrator deaktiv
+- download + installation Firefox (hinzufügen Trusted Sites mozilla.org, cdn....)
 - IIS + ASP.NET
 - https://cedrozor.github.io/myrtille/ (https://github.com/cedrozor/myrtille/releases/download/v2.3.1/Myrtille_2.3.1_x86_x64_Setup.exe)
 - -> Error 500
